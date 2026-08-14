@@ -1,1 +1,787 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>د. محمد سعيد - تاريخ</title>
+  <meta name="theme-color" content="#8b5cf6">
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogItivLti52KfYsSDZhdi12LHZhdmK2KkgLSDYp9mE2LnYq9mK2KfYqNin2KkiLAogICJzaG9ydF9uYW1lIjogItivLti52KfYsSDZhdii2LHZhdmK2KkiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2YxZjVmOSIsCiAgInRoZW1lX2NvbG9yIjogIiM4YjVjZjYiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48dGV4dCB5PScuOWVtJyBmb250LXNpemU9JzkwJz7wn5OcPC90ZXh0Pjwvc3ZnPiIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f3ff; --card: #ffffff; --text: #1e293b; --text-light: #64748b;
+      --border: #ddd6fe; --primary: #8b5cf6; --primary-dark: #7c3aed;
+      --shadow: 0 4px 15px rgba(139,92,246,0.08);
+      --shadow-lg: 0 15px 40px rgba(139,92,246,0.15); --sidebar-w: 350px;
+      --danger: #ef4444; --warning: #f59e0b; --info: #3b82f6; --success: #10b981;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; transition: all 0.3s; }
+    body.dark-mode { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --text-light: #94a3b8; --border: #334155; }
 
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+    @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
+    @keyframes bounceIn { 0%{opacity:0;transform:scale(0.3);} 50%{opacity:1;transform:scale(1.05);} 70%{transform:scale(0.9);} 100%{transform:scale(1);} }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .animate-fadeInUp { animation: fadeInUp 0.5s ease-out; }
+    .animate-scaleIn { animation: scaleIn 0.4s ease-out; }
+    .animate-bounceIn { animation: bounceIn 0.6s ease-out; }
+    .stagger-1 { animation-delay: 0.05s; } .stagger-2 { animation-delay: 0.1s; } .stagger-3 { animation-delay: 0.15s; }
+    .stagger-4 { animation-delay: 0.2s; } .stagger-5 { animation-delay: 0.25s; } .stagger-6 { animation-delay: 0.3s; }
+
+    .app-container { display: flex; min-height: 100vh; }
+
+    .sidebar {
+      width: var(--sidebar-w); min-width: var(--sidebar-w);
+      background: linear-gradient(180deg, #2e1065, #5b21b6, #8b5cf6); color: #fff;
+      padding: 20px 12px; display: flex; flex-direction: column; position: fixed;
+      right: 0; top: 0; bottom: 0; z-index: 100; box-shadow: 6px 0 35px rgba(0,0,0,0.4); overflow-y: auto;
+    }
+    .sidebar .logo { text-align: center; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid rgba(255,255,255,0.15); }
+    .sidebar .logo .sicon { font-size: 55px; display: block; margin-bottom: 8px; animation: float 3s infinite; }
+    .sidebar .logo h2 { font-size: 20px; background: linear-gradient(135deg, #c4b5fd, #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
+    .sidebar .logo p { font-size: 12px; color: #ddd6fe; }
+    .sidebar nav { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+    .sidebar nav button {
+      display: flex; align-items: center; gap: 12px; width: 100%; background: none; border: none;
+      color: #ede9fe; padding: 14px 16px; font-size: 16px; cursor: pointer; border-radius: 12px;
+      transition: all 0.3s; font-weight: 600;
+    }
+    .sidebar nav button:hover { background: rgba(255,255,255,0.12); color: #fff; transform: translateX(-5px); }
+    .sidebar nav button.active { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff; font-weight: 800; box-shadow: 0 8px 25px rgba(139,92,246,0.5); }
+    .sidebar nav button .nav-icon { font-size: 24px; width: 36px; text-align: center; }
+    .sidebar .bottom { margin-top: auto; padding-top: 12px; border-top: 2px solid rgba(255,255,255,0.15); display: flex; flex-direction: column; gap: 6px; }
+    .sidebar .bottom button { width: 100%; padding: 12px; border: none; border-radius: 10px; cursor: pointer; font-weight: 800; font-size: 14px; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .btn-ex { background: #059669; } .btn-im { background: #8b5cf6; } .btn-theme { background: #f59e0b; }
+
+    .content { flex: 1; margin-right: var(--sidebar-w); padding: 20px; min-height: 100vh; display: flex; flex-direction: column; }
+
+    .dash-header { background: linear-gradient(135deg, #8b5cf6, #7c3aed, #6d28d9); color: #fff; padding: 25px 25px; border-radius: 16px; margin-bottom: 18px; box-shadow: var(--shadow-lg); }
+    .dash-header h1 { font-size: 24px; font-weight: 900; }
+    .dash-header p { font-size: 14px; opacity: 0.95; }
+
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+    .stat-card { background: var(--card); padding: 16px; border-radius: 14px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 12px; transition: 0.3s; }
+    .stat-card:hover { transform: translateY(-3px); }
+    .stat-card .sicon { font-size: 32px; width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .stat-card .sval { font-size: 22px; font-weight: 900; }
+    .stat-card .slbl { font-size: 12px; color: var(--text-light); }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .dash-card { background: var(--card); border-radius: 16px; padding: 25px 16px; text-align: center; cursor: pointer; box-shadow: var(--shadow); transition: 0.35s; border-top: 5px solid var(--primary); min-height: 130px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    .dash-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .dash-card .ico { font-size: 50px; margin-bottom: 10px; }
+    .dash-card .ttl { font-weight: 900; font-size: 16px; }
+    .dash-card .sub { font-size: 12px; color: var(--text-light); }
+
+    .page { background: var(--card); border-radius: 16px; padding: 22px; box-shadow: var(--shadow); flex: 1; }
+    .page h2 { margin-bottom: 16px; font-size: 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .page-actions { display: flex; gap: 5px; margin-right: auto; flex-wrap: wrap; }
+    form { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; background: var(--bg); padding: 12px; border-radius: 10px; align-items: flex-end; }
+    form input, form select { padding: 11px 13px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; background: #fff; color: var(--text); }
+    form button { padding: 11px 16px; background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th { background: #f5f3ff; padding: 12px 8px; font-weight: 800; border-bottom: 3px solid var(--primary); font-size: 14px; }
+    td { padding: 10px 8px; border-bottom: 1px solid var(--border); text-align: center; font-size: 13px; }
+    tr:hover td { background: #faf8ff; }
+
+    .btn { padding: 6px 10px; margin: 1px; border: none; border-radius: 6px; cursor: pointer; color: #fff; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; gap: 3px; transition: 0.2s; }
+    .btn:hover { transform: scale(1.05); }
+    .btn-edit { background: #f59e0b; } .btn-del { background: #ef4444; } .btn-view { background: #3b82f6; }
+    .btn-wa { background: #25D366; } .btn-save { background: #10b981; } .btn-back { background: #64748b; }
+    .btn-share { background: #3b82f6; } .btn-excel { background: #059669; } .btn-pdf { background: #dc2626; }
+    .btn-img { background: #f59e0b; } .btn-ai { background: #8b5cf6; } .btn-print { background: #f59e0b; }
+    .btn-ocr { background: #f97316; } .btn-word { background: #0ea5e9; } .btn-bulk { background: #059669; }
+
+    .score-input { width: 55px; padding: 6px; border: 2px solid var(--border); border-radius: 6px; text-align: center; font-size: 14px; font-weight: 700; }
+    .score-input:focus { border-color: var(--primary); outline: none; }
+    .total-score { font-weight: 900; font-size: 16px; }
+    .score-high { color: #10b981; } .score-mid { color: #f59e0b; } .score-low { color: #ef4444; }
+
+    .alert { background: #fef3c7; padding: 10px; border-radius: 8px; margin: 8px 0; color: #92400e; font-weight: 700; border-right: 3px solid #f59e0b; }
+    .notification { background: #fee2e2; padding: 8px 10px; border-radius: 8px; margin: 4px 0; color: #991b1b; display: flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer; }
+    .points { display: inline-block; background: #ede9fe; color: #5b21b6; padding: 3px 8px; border-radius: 15px; font-weight: 700; font-size: 11px; }
+    .toast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background: #1e293b; color: #fff; padding: 10px 18px; border-radius: 8px; font-weight: 700; z-index: 9999; animation: slideDown 0.3s; }
+
+    .ai-card { background: linear-gradient(135deg, #ede9fe, #ddd6fe); border-radius: 14px; padding: 16px; margin: 10px 0; border: 2px solid #8b5cf6; }
+    .ai-card h3 { color: #5b21b6; margin-bottom: 8px; font-size: 16px; }
+    .ai-suggestion { background: #fff; padding: 10px; border-radius: 8px; margin: 4px 0; font-size: 13px; }
+
+    @media (max-width: 1200px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 800px) { :root { --sidebar-w: 280px; } }
+    @media (max-width: 600px) { .app-container { flex-direction: column; } .sidebar { position: relative; width: 100%; min-width: 100%; } .content { margin-right: 0; } .grid, .stats-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div class="app-container">
+  <nav class="sidebar">
+    <div class="logo"><span class="sicon">📜</span><h2>د. محمد سعيد</h2><p>مدرس تاريخ</p></div>
+    <nav>
+      <button class="active" onclick="navigateTo('dashboard')"><span class="nav-icon">🏠</span> الرئيسية</button>
+      <button onclick="navigateTo('classes')"><span class="nav-icon">🏫</span> الفصول</button>
+      <button onclick="navigateTo('aireport')"><span class="nav-icon">🤖</span> تحليل AI</button>
+      <button onclick="navigateTo('reports')"><span class="nav-icon">📊</span> التقارير</button>
+    </nav>
+    <div class="bottom">
+      <button class="btn-ex" onclick="exportAllData()">💾 تصدير</button>
+      <button class="btn-im" onclick="document.getElementById('ifile').click()">📂 استيراد</button>
+      <input type="file" id="ifile" accept=".json" style="display:none" onchange="importAllData(event)">
+      <button class="btn-theme" onclick="toggleTheme()">🌓 وضع ليلي</button>
+    </div>
+  </nav>
+  <main id="main-content" class="content"></main>
+</div>
+
+<script>
+// ==================== DATA LAYER ====================
+const PF = 'dr_mohamed_saeed_';
+function gid() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 5); }
+function get(k) { return JSON.parse(localStorage.getItem(PF + k) || '[]'); }
+function set(k, v) { localStorage.setItem(PF + k, JSON.stringify(v)); }
+const classes = () => get('classes'), saveClasses = (v) => set('classes', v), classById = (id) => classes().find(c => c.id === id);
+const notifications = () => get('notifications'), saveNotifications = (v) => set('notifications', v);
+
+function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => { t.style.animation = 'slideDown 0.3s reverse'; setTimeout(() => t.remove(), 300); }, 2000); }
+function addNotification(msg) { const n = notifications(); n.push({ id: gid(), msg, seen: false, time: Date.now() }); saveNotifications(n); }
+function toggleTheme() { document.body.classList.toggle('dark-mode'); localStorage.setItem(PF + 'theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); }
+if (localStorage.getItem(PF + 'theme') === 'dark') document.body.classList.add('dark-mode');
+
+async function shareAsImage(elementId, fileName) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  const canvas = await html2canvas(el, { backgroundColor: '#ffffff', scale: 2 });
+  const link = document.createElement('a');
+  link.download = fileName + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+  showToast('✅ تم التحميل كصورة');
+}
+function shareAsPDF(elementId, fileName) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF('l', 'mm', 'a4');
+  html2canvas(el, { backgroundColor: '#ffffff', scale: 2 }).then(canvas => {
+    doc.addImage(canvas.toDataURL('image/png'), 'PNG', 10, 10, 280, 190);
+    doc.save(fileName + '.pdf');
+    showToast('✅ تم التحميل كـ PDF');
+  });
+}
+function shareText(text) { if (navigator.share) navigator.share({ title: 'د. محمد سعيد', text }); else window.open('https://wa.me/?text=' + encodeURIComponent(text)); }
+
+async function exportAllData() {
+  const d = { classes: classes() };
+  const b = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'dr_mohamed_saeed_backup.json'; a.click();
+  showToast('✅ تم التصدير');
+}
+async function importAllData(e) {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = function(ev) {
+    try {
+      const d = JSON.parse(ev.target.result);
+      if (d.classes) saveClasses(d.classes);
+      showToast('✅ تم الاستيراد'); navigateTo('dashboard');
+    } catch(er) { alert('❌ فشل'); }
+  };
+  r.readAsText(f);
+}
+
+function navigateTo(page) { const fn = window['load' + page.charAt(0).toUpperCase() + page.slice(1)]; if (fn) fn(); document.querySelectorAll('.sidebar nav button').forEach(b => b.classList.remove('active')); const titles = { dashboard: 'الرئيسية', classes: 'الفصول', aireport: 'تحليل AI', reports: 'التقارير' }; document.querySelectorAll('.sidebar nav button').forEach(b => { if (b.textContent.includes(titles[page]||'')) b.classList.add('active'); }); }
+window.addEventListener('DOMContentLoaded', () => navigateTo('dashboard'));
+
+// ==================== DASHBOARD ====================
+function loadDashboard() {
+  const m = document.getElementById('main-content');
+  const cls = classes();
+  const totalStudents = cls.reduce((sum, c) => sum + (c.students ? c.students.length : 0), 0);
+  const allScores = [];
+  cls.forEach(c => (c.students || []).forEach(s => allScores.push((s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0))));
+  const avgScore = allScores.length ? Math.round(allScores.reduce((a,b) => a + b, 0) / allScores.length) : 0;
+  const excellent = allScores.filter(s => s >= 85).length;
+
+  let h = `<div class="dash-header"><h1>📜 أهلاً بك د. محمد سعيد</h1><p>إدارة صفوف مادة التاريخ</p></div>
+  <div class="stats-row">
+    <div class="stat-card animate-fadeInUp"><div class="sicon" style="background:#ede9fe;">🏫</div><div><div class="sval">${cls.length}</div><div class="slbl">فصل</div></div></div>
+    <div class="stat-card animate-fadeInUp"><div class="sicon" style="background:#dbeafe;">👨‍🎓</div><div><div class="sval">${totalStudents}</div><div class="slbl">طالب</div></div></div>
+    <div class="stat-card animate-fadeInUp"><div class="sicon" style="background:#d1fae5;">📊</div><div><div class="sval">${avgScore}%</div><div class="slbl">متوسط عام</div></div></div>
+    <div class="stat-card animate-fadeInUp"><div class="sicon" style="background:#fef3c7;">⭐</div><div><div class="sval">${excellent}</div><div class="slbl">ممتازين</div></div></div>
+  </div>
+  <div class="grid">
+    <div class="dash-card stagger-1" onclick="navigateTo('classes')"><span class="ico">🏫</span><div class="ttl">الفصول</div><div class="sub">${cls.length} فصل</div></div>
+    <div class="dash-card stagger-2" onclick="navigateTo('aireport')"><span class="ico">🤖</span><div class="ttl">تحليل AI</div><div class="sub">توقعات واقتراحات</div></div>
+    <div class="dash-card stagger-3" onclick="navigateTo('reports')"><span class="ico">📊</span><div class="ttl">التقارير</div><div class="sub">Excel / PDF / Word</div></div>
+  </div>`;
+  m.innerHTML = h;
+}
+
+// ==================== CLASSES PAGE ====================
+function loadClasses() {
+  const m = document.getElementById('main-content');
+  const cls = classes();
+  let h = `<div class="page"><h2>🏫 الفصول
+    <div class="page-actions">
+      <button class="btn btn-img" onclick="shareAsImage('classes-content', 'الفصول')">📸</button>
+      <button class="btn btn-pdf" onclick="shareAsPDF('classes-content', 'الفصول')">📄</button>
+      <button class="btn btn-excel" onclick="exportClassesExcel()">📥 Excel</button>
+    </div>
+  </h2>
+  <div id="classes-content">
+    <form id="cf">
+      <input type="text" id="cn" placeholder="اسم الفصل (مثال: 1/1)" required>
+      <button type="submit">➕ إضافة فصل</button>
+    </form>
+    <div class="grid">`;
+  cls.forEach(c => {
+    const studentCount = c.students ? c.students.length : 0;
+    h += `<div class="dash-card" onclick="openClass('${c.id}')">
+      <span class="ico">🏫</span>
+      <div class="ttl">${c.name}</div>
+      <div class="sub">${studentCount} طالب</div>
+      <div style="margin-top:8px;display:flex;gap:5px;">
+        <button class="btn btn-edit" onclick="event.stopPropagation(); renameClass('${c.id}')">✏️</button>
+        <button class="btn btn-del" onclick="event.stopPropagation(); deleteClass('${c.id}')">🗑️</button>
+      </div>
+    </div>`;
+  });
+  if (!cls.length) h += '<p style="text-align:center;padding:30px;">لا توجد فصول - أضف أول فصل</p>';
+  h += `</div></div></div>`;
+  m.innerHTML = h;
+  document.getElementById('cf').onsubmit = function(e) {
+    e.preventDefault();
+    const name = document.getElementById('cn').value.trim();
+    if (!name) return;
+    saveClasses([...classes(), { id: gid(), name, students: [] }]);
+    showToast('✅ تم إضافة الفصل');
+    loadClasses();
+  };
+}
+
+function renameClass(id) {
+  const c = classById(id);
+  if (!c) return;
+  const name = prompt('الاسم الجديد:', c.name);
+  if (!name) return;
+  const all = classes();
+  all[all.findIndex(x => x.id === id)].name = name;
+  saveClasses(all);
+  loadClasses();
+}
+
+function deleteClass(id) {
+  if (!confirm('حذف الفصل وكل طلابه؟')) return;
+  saveClasses(classes().filter(c => c.id !== id));
+  loadClasses();
+}
+
+function openClass(id) {
+  const c = classById(id);
+  if (!c) return;
+  const m = document.getElementById('main-content');
+  let h = `<div class="page"><h2>🏫 ${c.name}
+    <div class="page-actions">
+      <button class="btn btn-back" onclick="loadClasses()">⬅️ رجوع</button>
+      <button class="btn btn-img" onclick="shareAsImage('class-content', '${c.name}')">📸</button>
+      <button class="btn btn-pdf" onclick="shareAsPDF('class-content', '${c.name}')">📄</button>
+      <button class="btn btn-excel" onclick="exportClassExcel('${c.id}')">📥 Excel</button>
+      <button class="btn btn-ocr" onclick="scanPaper('${c.id}')">📷 سكان</button>
+      <button class="btn btn-bulk" onclick="bulkAdd('${c.id}')">📝 إضافة جماعي</button>
+    </div>
+  </h2>
+  <div id="class-content">
+    <form id="sf">
+      <input type="text" id="sn" placeholder="اسم الطالب" required>
+      <button type="submit">➕ إضافة طالب</button>
+    </form>
+    <table>
+      <thead><tr><th>#</th><th>الطالب</th><th>أعمال (70)</th><th>شهر1 (15)</th><th>شهر2 (15)</th><th>المجموع</th><th>النسبة</th><th>تقدير</th><th>تقرير</th><th>واتساب</th><th>حذف</th></tr></thead>
+      <tbody>`;
+  const students = c.students || [];
+  students.forEach((s, i) => {
+    const workScore = s.workScore !== undefined ? s.workScore : 70;
+    const month1 = s.month1Score || 0;
+    const month2 = s.month2Score || 0;
+    const total = workScore + month1 + month2;
+    const pct = Math.round((total / 100) * 100);
+    const scoreClass = pct >= 85 ? 'score-high' : pct >= 50 ? 'score-mid' : 'score-low';
+    const grade = pct >= 85 ? 'ممتاز' : pct >= 70 ? 'جيد جداً' : pct >= 50 ? 'جيد' : 'ضعيف';
+    h += `<tr>
+      <td>${i + 1}</td>
+      <td><strong>${s.name}</strong></td>
+      <td><input type="number" class="score-input" value="${workScore}" min="0" max="70" onchange="updateScore('${c.id}', '${s.id}', 'workScore', this.value)"></td>
+      <td><input type="number" class="score-input" value="${month1}" min="0" max="15" onchange="updateScore('${c.id}', '${s.id}', 'month1Score', this.value)"></td>
+      <td><input type="number" class="score-input" value="${month2}" min="0" max="15" onchange="updateScore('${c.id}', '${s.id}', 'month2Score', this.value)"></td>
+      <td class="total-score ${scoreClass}">${total}</td>
+      <td class="${scoreClass}">${pct}%</td>
+      <td>${grade}</td>
+      <td><button class="btn btn-pdf" onclick="generateStudentReport('${c.id}', '${s.id}')">📄</button>
+          <button class="btn btn-word" onclick="generateStudentWord('${c.id}', '${s.id}')">📝</button></td>
+      <td><button class="btn btn-wa" onclick="sendStudentResult('${c.id}', '${s.id}')">📱</button></td>
+      <td><button class="btn btn-del" onclick="deleteStudent('${c.id}', '${s.id}')">🗑️</button></td>
+    </tr>`;
+  });
+  if (!students.length) h += '<tr><td colspan="11">لا يوجد طلاب</td></tr>';
+  h += `</tbody></table></div></div>`;
+  m.innerHTML = h;
+  document.getElementById('sf').onsubmit = function(e) {
+    e.preventDefault();
+    const name = document.getElementById('sn').value.trim();
+    if (!name) return;
+    const all = classes();
+    const idx = all.findIndex(x => x.id === id);
+    if (idx > -1) {
+      if (!all[idx].students) all[idx].students = [];
+      all[idx].students.push({ id: gid(), name, workScore: 70, month1Score: 0, month2Score: 0 });
+      saveClasses(all);
+      showToast('✅ تمت الإضافة');
+      openClass(id);
+    }
+  };
+}
+
+function bulkAdd(classId) {
+  const names = prompt('الصق أسماء الطلاب (كل اسم في سطر):');
+  if (!names) return;
+  const nameList = names.split('\n').map(n => n.trim()).filter(n => n);
+  if (!nameList.length) return alert('لا توجد أسماء');
+  const all = classes();
+  const idx = all.findIndex(c => c.id === classId);
+  if (idx > -1) {
+    if (!all[idx].students) all[idx].students = [];
+    nameList.forEach(name => {
+      all[idx].students.push({ id: gid(), name, workScore: 70, month1Score: 0, month2Score: 0 });
+    });
+    saveClasses(all);
+    showToast('✅ تمت إضافة ' + nameList.length + ' طلاب');
+    openClass(classId);
+  }
+}
+
+function scanPaper(classId) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = async function() {
+    if (!this.files[0]) return;
+    showToast('⏳ جاري قراءة الورق...');
+    try {
+      const result = await Tesseract.recognize(this.files[0], 'ara+eng');
+      const text = result.data.text;
+      alert('تم قراءة النص:\n\n' + text);
+      showToast('✅ تم القراءة');
+    } catch(e) {
+      alert('❌ فشل القراءة');
+    }
+  };
+  input.click();
+}
+
+function updateScore(classId, studentId, field, value) {
+  const all = classes();
+  const cIdx = all.findIndex(c => c.id === classId);
+  if (cIdx > -1) {
+    const sIdx = all[cIdx].students.findIndex(s => s.id === studentId);
+    if (sIdx > -1) {
+      all[cIdx].students[sIdx][field] = parseInt(value) || 0;
+      saveClasses(all);
+      showToast('✅ تم التحديث');
+    }
+  }
+}
+
+function deleteStudent(classId, studentId) {
+  if (!confirm('حذف الطالب؟')) return;
+  const all = classes();
+  const cIdx = all.findIndex(c => c.id === classId);
+  if (cIdx > -1) {
+    all[cIdx].students = all[cIdx].students.filter(s => s.id !== studentId);
+    saveClasses(all);
+    openClass(classId);
+  }
+}
+
+function sendStudentResult(classId, studentId) {
+  const c = classById(classId);
+  const s = c ? c.students.find(st => st.id === studentId) : null;
+  if (!s) return;
+  const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
+  const pct = Math.round((total / 100) * 100);
+  shareText(`📋 نتيجة ${s.name}\n📚 أعمال سنة: ${s.workScore || 70}/70\n📝 شهر 1: ${s.month1Score || 0}/15\n📝 شهر 2: ${s.month2Score || 0}/15\n📊 المجموع: ${total}/100 (${pct}%)\n---\nد. محمد سعيد - تاريخ`);
+}
+
+function generateStudentReport(classId, studentId) {
+  const c = classById(classId);
+  const s = c ? c.students.find(st => st.id === studentId) : null;
+  if (!s) return;
+  const workScore = s.workScore || 70;
+  const month1 = s.month1Score || 0;
+  const month2 = s.month2Score || 0;
+  const total = workScore + month1 + month2;
+  const pct = Math.round((total / 100) * 100);
+  const grade = pct >= 85 ? 'ممتاز' : pct >= 70 ? 'جيد جداً' : pct >= 50 ? 'جيد' : 'ضعيف';
+  const support = pct < 50 ? 'يحتاج دعم إضافي ومتابعة خاصة' : pct >= 85 ? 'يستحق مكافأة على التفوق' : 'يحتاج متابعة منتظمة';
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF('p', 'mm', 'a4');
+  doc.text(`تقرير الطالب: ${s.name}`, 105, 15, { align: 'center' });
+  doc.text(`الفصل: ${c.name}`, 20, 30, { align: 'right' });
+  doc.text(`أعمال السنة: ${workScore}/70`, 20, 38, { align: 'right' });
+  doc.text(`شهر 1: ${month1}/15`, 20, 46, { align: 'right' });
+  doc.text(`شهر 2: ${month2}/15`, 20, 54, { align: 'right' });
+  doc.text(`المجموع: ${total}/100 (${pct}%)`, 20, 62, { align: 'right' });
+  doc.text(`التقدير: ${grade}`, 20, 70, { align: 'right' });
+  doc.text(`التوصية: ${support}`, 20, 78, { align: 'right' });
+  doc.text('د. محمد سعيد - مادة التاريخ', 105, 90, { align: 'center' });
+  doc.save(`${s.name}_report.pdf`);
+  showToast('✅ تم إنشاء PDF');
+}
+
+function generateStudentWord(classId, studentId) {
+  const c = classById(classId);
+  const s = c ? c.students.find(st => st.id === studentId) : null;
+  if (!s) return;
+  const workScore = s.workScore || 70;
+  const month1 = s.month1Score || 0;
+  const month2 = s.month2Score || 0;
+  const total = workScore + month1 + month2;
+  const pct = Math.round((total / 100) * 100);
+  const grade = pct >= 85 ? 'ممتاز' : pct >= 70 ? 'جيد جداً' : pct >= 50 ? 'جيد' : 'ضعيف';
+  const support = pct < 50 ? 'يحتاج دعم إضافي' : pct >= 85 ? 'يستحق مكافأة' : 'يحتاج متابعة';
+  const html = `<h2>تقرير الطالب: ${s.name}</h2><table>
+    <tr><td>الفصل</td><td>${c.name}</td></tr>
+    <tr><td>أعمال السنة</td><td>${workScore}/70</td></tr>
+    <tr><td>شهر 1</td><td>${month1}/15</td></tr>
+    <tr><td>شهر 2</td><td>${month2}/15</td></tr>
+    <tr><td>المجموع</td><td>${total}/100 (${pct}%)</td></tr>
+    <tr><td>التقدير</td><td>${grade}</td></tr>
+    <tr><td>التوصية</td><td>${support}</td></tr>
+  </table>`;
+  const blob = new Blob([html], { type: 'application/msword' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${s.name}_report.doc`;
+  a.click();
+  showToast('✅ تم إنشاء Word');
+}
+
+function exportClassesExcel() {
+  const cls = classes();
+  const data = [['الفصل', 'عدد الطلاب', 'المتوسط']];
+  cls.forEach(c => {
+    const students = c.students || [];
+    const avg = students.length ? Math.round(students.reduce((sum, s) => sum + (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0), 0) / students.length) : 0;
+    data.push([c.name, students.length, avg + '%']);
+  });
+  const ws = XLSX.utils.aoa_to_sheet(data);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'الفصول');
+  XLSX.writeFile(wb, 'classes_summary.xlsx');
+  showToast('✅ تم التصدير');
+}
+
+function exportClassExcel(classId) {
+  const c = classById(classId);
+  if (!c) return;
+  const data = [['#', 'الطالب', 'أعمال (70)', 'شهر1 (15)', 'شهر2 (15)', 'المجموع', 'النسبة', 'التقدير']];
+  (c.students || []).forEach((s, i) => {
+    const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
+    const pct = Math.round((total / 100) * 100);
+    const grade = pct >= 85 ? 'ممتاز' : pct >= 70 ? 'جيد جداً' : pct >= 50 ? 'جيد' : 'ضعيف';
+    data.push([i + 1, s.name, s.workScore || 70, s.month1Score || 0, s.month2Score || 0, total, pct + '%', grade]);
+  });
+  const ws = XLSX.utils.aoa_to_sheet(data);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, c.name);
+  XLSX.writeFile(wb, c.name + '_grades.xlsx');
+  showToast('✅ تم التصدير');
+}// ==================== AI REPORT PAGE ====================
+function loadAireport() {
+  const m = document.getElementById('main-content');
+  const cls = classes();
+  const allStudents = [];
+  
+  cls.forEach(c => {
+    (c.students || []).forEach(s => {
+      const workScore = s.workScore !== undefined ? s.workScore : 70;
+      const month1 = s.month1Score || 0;
+      const month2 = s.month2Score || 0;
+      const total = workScore + month1 + month2;
+      const pct = Math.round((total / 100) * 100);
+      allStudents.push({
+        ...s,
+        className: c.name,
+        workScore,
+        month1,
+        month2,
+        total,
+        pct
+      });
+    });
+  });
+
+  const excellent = allStudents.filter(s => s.pct >= 85);
+  const good = allStudents.filter(s => s.pct >= 70 && s.pct < 85);
+  const average = allStudents.filter(s => s.pct >= 50 && s.pct < 70);
+  const weak = allStudents.filter(s => s.pct < 50);
+  
+  const improvingStudents = allStudents.filter(s => s.month2 > s.month1);
+  const decliningStudents = allStudents.filter(s => s.month2 < s.month1);
+  const stableStudents = allStudents.filter(s => s.month2 === s.month1);
+  
+  const lowWorkScore = allStudents.filter(s => s.workScore < 60);
+
+  const predictions = allStudents.map(s => {
+    let predicted = s.pct;
+    if (s.month2 > s.month1) predicted += 5;
+    if (s.month2 < s.month1) predicted -= 5;
+    if (s.workScore < 50) predicted -= 10;
+    if (s.workScore >= 65) predicted += 5;
+    return { ...s, predictedPct: Math.max(0, Math.min(100, predicted)) };
+  });
+
+  const classAverages = cls.map(c => {
+    const students = c.students || [];
+    const avg = students.length ? Math.round(students.reduce((sum, s) => sum + (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0), 0) / students.length) : 0;
+    const passRate = students.length ? Math.round((students.filter(s => ((s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0)) >= 50).length / students.length) * 100) : 0;
+    return { className: c.name, avg, passRate, studentCount: students.length };
+  });
+
+  let h = `<div class="page"><h2>🤖 تحليل الذكاء الاصطناعي - تاريخ
+    <div class="page-actions">
+      <button class="btn btn-img" onclick="shareAsImage('ai-content', 'تحليل_AI')">📸</button>
+      <button class="btn btn-pdf" onclick="shareAsPDF('ai-content', 'تحليل_AI')">📄</button>
+    </div>
+  </h2>
+  <div id="ai-content">`;
+
+  h += `<div class="ai-card animate-fadeInUp">
+    <h3>📊 ملخص عام</h3>
+    <div class="ai-suggestion">🏫 عدد الفصول: <strong>${cls.length}</strong></div>
+    <div class="ai-suggestion">👨‍🎓 إجمالي الطلاب: <strong>${allStudents.length}</strong></div>
+    <div class="ai-suggestion">🌟 ممتاز (≥85%): <strong>${excellent.length} طالب</strong></div>
+    <div class="ai-suggestion">👍 جيد (70-84%): <strong>${good.length} طالب</strong></div>
+    <div class="ai-suggestion">📊 متوسط (50-69%): <strong>${average.length} طالب</strong></div>
+    <div class="ai-suggestion">⚠️ ضعيف (<50%): <strong>${weak.length} طالب</strong></div>
+  </div>`;
+
+  h += `<div class="ai-card animate-fadeInUp">
+    <h3>📈 تحليل التحسن من شهر 1 لشهر 2</h3>
+    <div class="ai-suggestion">📈 طلاب بيتحسنوا: <strong>${improvingStudents.length}</strong></div>
+    <div class="ai-suggestion">📉 طلاب بينخفضوا: <strong>${decliningStudents.length}</strong></div>
+    <div class="ai-suggestion">➡️ طلاب ثابتين: <strong>${stableStudents.length}</strong></div>
+  </div>`;
+
+  if (lowWorkScore.length > 0) {
+    h += `<div class="ai-card animate-fadeInUp">
+      <h3>⚠️ طلاب أعمال السنة منخفضة (<60)</h3>`;
+    lowWorkScore.forEach(s => h += `<div class="ai-suggestion">👨‍🎓 ${s.name} (${s.className}) - ${s.workScore}/70</div>`);
+    h += `</div>`;
+  }
+
+  if (weak.length > 0) {
+    h += `<div class="ai-card animate-fadeInUp">
+      <h3>🔴 طلاب يحتاجون تدخل فوري (المجموع <50%)</h3>`;
+    weak.forEach(s => h += `<div class="ai-suggestion">👨‍🎓 ${s.name} (${s.className}) - ${s.pct}%</div>`);
+    h += `</div>`;
+  }
+
+  if (excellent.length > 0) {
+    h += `<div class="ai-card animate-fadeInUp">
+      <h3>🌟 طلاب ممتازون - يستحقون مكافأة</h3>`;
+    excellent.forEach(s => h += `<div class="ai-suggestion">👨‍🎓 ${s.name} (${s.className}) - ${s.pct}% 🏅</div>`);
+    h += `</div>`;
+  }
+
+  h += `<div class="ai-card animate-fadeInUp">
+    <h3>🎯 توقعات الأداء النهائي</h3>
+    <table style="width:100%;">
+      <thead><tr><th>الطالب</th><th>الفصل</th><th>الحالي</th><th>المتوقع</th><th>الاتجاه</th></tr></thead>
+      <tbody>`;
+  predictions.forEach(s => {
+    const trend = s.predictedPct > s.pct ? '📈 يتحسن' : s.predictedPct < s.pct ? '📉 ينخفض' : '➡️ ثابت';
+    h += `<tr><td>${s.name}</td><td>${s.className}</td><td>${s.pct}%</td><td>${s.predictedPct}%</td><td>${trend}</td></tr>`;
+  });
+  h += `</tbody></table></div>`;
+
+  h += `<div class="ai-card animate-fadeInUp">
+    <h3>🏫 مقارنة الفصول</h3>
+    <table style="width:100%;">
+      <thead><tr><th>الفصل</th><th>عدد الطلاب</th><th>المتوسط</th><th>نسبة النجاح</th></tr></thead>
+      <tbody>`;
+  classAverages.forEach(c => {
+    h += `<tr><td>${c.className}</td><td>${c.studentCount}</td><td>${c.avg}%</td><td>${c.passRate}%</td></tr>`;
+  });
+  h += `</tbody></table></div>`;
+
+  h += `<div class="ai-card animate-fadeInUp">
+    <h3>💡 اقتراحات ذكية</h3>`;
+  if (weak.length > 0) h += `<div class="ai-suggestion">📞 التواصل مع أولياء أمور الطلاب الضعاف (${weak.length} طالب)</div>`;
+  if (decliningStudents.length > 0) h += `<div class="ai-suggestion">📚 عمل مراجعات إضافية للطلاب المنخفضين (${decliningStudents.length} طالب)</div>`;
+  if (excellent.length > 0) h += `<div class="ai-suggestion">🌟 تشجيع الطلاب الممتازين بمكافآت (${excellent.length} طالب)</div>`;
+  if (lowWorkScore.length > 0) h += `<div class="ai-suggestion">⚠️ متابعة طلاب أعمال السنة المنخفضة (${lowWorkScore.length} طالب)</div>`;
+  h += `<div class="ai-suggestion">📊 عمل اختبارات دورية لقياس التقدم</div>`;
+  h += `<div class="ai-suggestion">🎯 وضع أهداف أسبوعية لكل فصل</div>`;
+  h += `</div>`;
+
+  h += `</div></div>`;
+  m.innerHTML = h;
+}
+
+// ==================== REPORTS PAGE ====================
+function loadReports() {
+  const m = document.getElementById('main-content');
+  const cls = classes();
+  const allStudents = [];
+  
+  cls.forEach(c => {
+    (c.students || []).forEach(s => {
+      const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
+      allStudents.push({
+        ...s,
+        className: c.name,
+        total,
+        pct: Math.round((total / 100) * 100)
+      });
+    });
+  });
+
+  let h = `<div class="page"><h2>📊 التقارير</h2>
+    <div class="act-bar">
+      <button class="btn btn-excel" onclick="exportFullExcel()">📥 Excel شامل</button>
+      <button class="btn btn-pdf" onclick="shareAsPDF('reports-content', 'التقرير_الشامل')">📄 PDF</button>
+      <button class="btn btn-img" onclick="shareAsImage('reports-content', 'التقرير_الشامل')">📸 صورة</button>
+      <button class="btn btn-print" onclick="printFullReport()">🖨️ طباعة</button>
+      <button class="btn btn-word" onclick="exportFullWord()">📝 Word</button>
+    </div>
+    <div id="reports-content">`;
+
+  h += `<div class="chart-wrap"><h3>📊 توزيع الدرجات</h3><canvas id="gradesChart" height="80"></canvas></div>`;
+  setTimeout(() => {
+    const ctx = document.getElementById('gradesChart');
+    if (ctx) {
+      const ranges = [
+        allStudents.filter(s => s.pct >= 85).length,
+        allStudents.filter(s => s.pct >= 70 && s.pct < 85).length,
+        allStudents.filter(s => s.pct >= 50 && s.pct < 70).length,
+        allStudents.filter(s => s.pct < 50).length
+      ];
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['ممتاز (≥85%)', 'جيد (70-84%)', 'متوسط (50-69%)', 'ضعيف (<50%)'],
+          datasets: [{
+            data: ranges,
+            backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444']
+          }]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+      });
+    }
+  }, 200);
+
+  h += `<h3 style="margin-top:18px;">📋 كشف الدرجات الشامل</h3>
+    <table>
+      <thead><tr><th>#</th><th>الطالب</th><th>الفصل</th><th>أعمال (70)</th><th>شهر1 (15)</th><th>شهر2 (15)</th><th>المجموع</th><th>النسبة</th><th>التقدير</th></tr></thead>
+      <tbody>`;
+  
+  allStudents.sort((a, b) => b.total - a.total).forEach((s, i) => {
+    const grade = s.pct >= 85 ? 'ممتاز' : s.pct >= 70 ? 'جيد جداً' : s.pct >= 50 ? 'جيد' : 'ضعيف';
+    const scoreClass = s.pct >= 85 ? 'score-high' : s.pct >= 50 ? 'score-mid' : 'score-low';
+    h += `<tr>
+      <td>${i + 1}</td>
+      <td><strong>${s.name}</strong></td>
+      <td>${s.className}</td>
+      <td>${s.workScore}</td>
+      <td>${s.month1}</td>
+      <td>${s.month2}</td>
+      <td class="${scoreClass}">${s.total}</td>
+      <td class="${scoreClass}">${s.pct}%</td>
+      <td>${grade}</td>
+    </tr>`;
+  });
+  
+  if (!allStudents.length) h += '<tr><td colspan="9">لا يوجد طلاب</td></tr>';
+  h += `</tbody></table>`;
+
+  h += `<h3 style="margin-top:18px;">🏫 ملخص الفصول</h3>
+    <table>
+      <thead><tr><th>الفصل</th><th>الطلاب</th><th>المتوسط</th><th>أعلى</th><th>أقل</th><th>نجاح%</th></tr></thead>
+      <tbody>`;
+  
+  cls.forEach(c => {
+    const students = c.students || [];
+    const totals = students.map(s => (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0));
+    const avg = totals.length ? Math.round(totals.reduce((a, b) => a + b, 0) / totals.length) : 0;
+    const max = totals.length ? Math.max(...totals) : 0;
+    const min = totals.length ? Math.min(...totals) : 0;
+    const passRate = totals.length ? Math.round((totals.filter(t => t >= 50).length / totals.length) * 100) : 0;
+    h += `<tr><td>${c.name}</td><td>${students.length}</td><td>${avg}%</td><td>${max}</td><td>${min}</td><td>${passRate}%</td></tr>`;
+  });
+  h += `</tbody></table></div></div>`;
+  m.innerHTML = h;
+}
+
+function exportFullExcel() {
+  const cls = classes();
+  const data = [['#', 'الطالب', 'الفصل', 'أعمال (70)', 'شهر1 (15)', 'شهر2 (15)', 'المجموع', 'النسبة', 'التقدير']];
+  let i = 1;
+  cls.forEach(c => {
+    (c.students || []).forEach(s => {
+      const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
+      const pct = Math.round((total / 100) * 100);
+      const grade = pct >= 85 ? 'ممتاز' : pct >= 70 ? 'جيد جداً' : pct >= 50 ? 'جيد' : 'ضعيف';
+      data.push([i++, s.name, c.name, s.workScore || 70, s.month1Score || 0, s.month2Score || 0, total, pct + '%', grade]);
+    });
+  });
+  const ws = XLSX.utils.aoa_to_sheet(data);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'الدرجات');
+  XLSX.writeFile(wb, 'dr_mohamed_saeed_grades.xlsx');
+  showToast('✅ تم تصدير Excel');
+}
+
+function exportFullWord() {
+  const cls = classes();
+  let html = '<h2>كشف درجات التاريخ - د. محمد سعيد</h2>';
+  cls.forEach(c => {
+    html += `<h3>${c.name}</h3><table><tr><th>#</th><th>الطالب</th><th>أعمال</th><th>شهر1</th><th>شهر2</th><th>المجموع</th><th>النسبة</th></tr>`;
+    (c.students || []).forEach((s, i) => {
+      const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
+      html += `<tr><td>${i + 1}</td><td>${s.name}</td><td>${s.workScore || 70}</td><td>${s.month1Score || 0}</td><td>${s.month2Score || 0}</td><td>${total}</td><td>${Math.round((total / 100) * 100)}%</td></tr>`;
+    });
+    html += '</table><br>';
+  });
+  const blob = new Blob([html], { type: 'application/msword' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'dr_mohamed_saeed_full_report.doc';
+  a.click();
+  showToast('✅ تم تصدير Word');
+}
+
+function printFullReport() {
+  const cls = classes();
+  let html = '<h2>كشف درجات التاريخ - د. محمد سعيد</h2>';
+  cls.forEach(c => {
+    html += `<h3>${c.name}</h3><table><tr><th>#</th><th>الطالب</th><th>أعمال</th><th>شهر1</th><th>شهر2</th><th>المجموع</th><th>النسبة</th></tr>`;
+    (c.students || []).forEach((s, i) => {
+      const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
+      html += `<tr><td>${i + 1}</td><td>${s.name}</td><td>${s.workScore || 70}</td><td>${s.month1Score || 0}</td><td>${s.month2Score || 0}</td><td>${total}</td><td>${Math.round((total / 100) * 100)}%</td></tr>`;
+    });
+    html += '</table><br>';
+  });
+  const win = window.open('', '_blank');
+  win.document.write('<html><head><style>body{font-family:Tahoma;direction:rtl;padding:20px;}table{width:100%;border-collapse:collapse;}td,th{border:1px solid #ddd;padding:8px;text-align:center;}h3{color:#7c3aed;}</style></head><body>' + html + '</body></html>');
+  win.print();
+}
+</script>
+</body>
+</html>
