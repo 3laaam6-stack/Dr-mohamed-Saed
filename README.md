@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>د. محمد سعيد - تاريخ</title>
   <meta name="theme-color" content="#8b5cf6">
-  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogItivLti52KfYsSDZhdi12LHZhdmK2KkgLSDYp9mE2LnYq9mK2KfYqNin2KkiLAogICJzaG9ydF9uYW1lIjogItivLti52KfYsSDZhdii2LHZhdmK2KkiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2YxZjVmOSIsCiAgInRoZW1lX2NvbG9yIjogIiM4YjVjZjYiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48dGV4dCB5PScuOWVtJyBmb250LXNpemU9JzkwJz7wn5OcPC90ZXh0Pjwvc3ZnPiIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=">
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogItivLti52KfYsSDZhdi12LHZhdmK2KkgLSDYp9mE2LnYq9mK2KfYqNin2KkiLAogICJzaG9ydF9uYW1lIjogItivLti52KfYsCDZhdi12LHZhdmK2KkiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2YxZjVmOSIsCiAgInRoZW1lX2NvbG9yIjogIiM4YjVjZjYiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48dGV4dCB5PScuOWVtJyBmb250LXNpemU9JzkwJz7wn5OcPC90ZXh0Pjwvc3ZnPiIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -16,7 +16,7 @@
       --bg: #f5f3ff; --card: #ffffff; --text: #1e293b; --text-light: #64748b;
       --border: #ddd6fe; --primary: #8b5cf6; --primary-dark: #7c3aed;
       --shadow: 0 4px 15px rgba(139,92,246,0.08);
-      --shadow-lg: 0 15px 40px rgba(139,92,246,0.15); --sidebar-w: 350px;
+      --shadow-lg: 0 15px 40px rgba(139,92,246,0.15); --sidebar-w: 360px;
       --danger: #ef4444; --warning: #f59e0b; --info: #3b82f6; --success: #10b981;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,15 +49,16 @@
     .sidebar .logo .sicon { font-size: 55px; display: block; margin-bottom: 8px; animation: float 3s infinite; }
     .sidebar .logo h2 { font-size: 20px; background: linear-gradient(135deg, #c4b5fd, #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
     .sidebar .logo p { font-size: 12px; color: #ddd6fe; }
-    .sidebar nav { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+    .sidebar nav { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .sidebar nav .nav-label { font-size: 10px; color: #c4b5fd; letter-spacing: 2px; padding: 12px 16px 4px; font-weight: 800; }
     .sidebar nav button {
       display: flex; align-items: center; gap: 12px; width: 100%; background: none; border: none;
-      color: #ede9fe; padding: 14px 16px; font-size: 16px; cursor: pointer; border-radius: 12px;
+      color: #ede9fe; padding: 12px 16px; font-size: 15px; cursor: pointer; border-radius: 10px;
       transition: all 0.3s; font-weight: 600;
     }
-    .sidebar nav button:hover { background: rgba(255,255,255,0.12); color: #fff; transform: translateX(-5px); }
+    .sidebar nav button:hover { background: rgba(255,255,255,0.12); color: #fff; }
     .sidebar nav button.active { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff; font-weight: 800; box-shadow: 0 8px 25px rgba(139,92,246,0.5); }
-    .sidebar nav button .nav-icon { font-size: 24px; width: 36px; text-align: center; }
+    .sidebar nav button .nav-icon { font-size: 22px; width: 32px; text-align: center; }
     .sidebar .bottom { margin-top: auto; padding-top: 12px; border-top: 2px solid rgba(255,255,255,0.15); display: flex; flex-direction: column; gap: 6px; }
     .sidebar .bottom button { width: 100%; padding: 12px; border: none; border-radius: 10px; cursor: pointer; font-weight: 800; font-size: 14px; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px; }
     .btn-ex { background: #059669; } .btn-im { background: #8b5cf6; } .btn-theme { background: #f59e0b; }
@@ -68,19 +69,29 @@
     .dash-header h1 { font-size: 24px; font-weight: 900; }
     .dash-header p { font-size: 14px; opacity: 0.95; }
 
-    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+    .dash-layout { display: grid; grid-template-columns: 1fr 350px; gap: 16px; flex: 1; align-items: start; }
+    .stats-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
     .stat-card { background: var(--card); padding: 16px; border-radius: 14px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 12px; transition: 0.3s; }
     .stat-card:hover { transform: translateY(-3px); }
     .stat-card .sicon { font-size: 32px; width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
     .stat-card .sval { font-size: 22px; font-weight: 900; }
     .stat-card .slbl { font-size: 12px; color: var(--text-light); }
 
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .dash-card { background: var(--card); border-radius: 16px; padding: 25px 16px; text-align: center; cursor: pointer; box-shadow: var(--shadow); transition: 0.35s; border-top: 5px solid var(--primary); min-height: 130px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-    .dash-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .dash-card .ico { font-size: 50px; margin-bottom: 10px; }
-    .dash-card .ttl { font-weight: 900; font-size: 16px; }
-    .dash-card .sub { font-size: 12px; color: var(--text-light); }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .dash-card { background: var(--card); border-radius: 14px; padding: 22px 14px; text-align: center; cursor: pointer; box-shadow: var(--shadow); transition: 0.35s; border-top: 4px solid var(--primary); min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    .dash-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .dash-card .ico { font-size: 45px; margin-bottom: 8px; }
+    .dash-card .ttl { font-weight: 900; font-size: 15px; }
+    .dash-card .sub { font-size: 11px; color: var(--text-light); }
+
+    .schedule-panel { background: var(--card); border-radius: 14px; padding: 14px; box-shadow: var(--shadow); max-height: calc(100vh - 100px); overflow-y: auto; position: sticky; top: 16px; }
+    .schedule-panel h3 { font-size: 14px; margin-bottom: 10px; display: flex; gap: 5px; justify-content: space-between; flex-wrap: wrap; }
+    .schedule-table { width: 100%; border-collapse: collapse; }
+    .schedule-table th { background: var(--primary); color: #fff; padding: 8px 4px; font-size: 11px; }
+    .schedule-table td { padding: 4px; text-align: center; border: 1px solid var(--border); vertical-align: top; }
+    .schedule-item { background: #f0f0ff; padding: 3px 4px; border-radius: 4px; margin: 2px 0; font-size: 9px; text-align: right; border-right: 2px solid var(--primary); }
+    .schedule-item .si-del { cursor: pointer; font-size: 9px; opacity: 0.4; }
+    .empty-day { color: #94a3b8; font-size: 9px; padding: 4px; cursor: pointer; }
 
     .page { background: var(--card); border-radius: 16px; padding: 22px; box-shadow: var(--shadow); flex: 1; }
     .page h2 { margin-bottom: 16px; font-size: 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -91,7 +102,6 @@
     table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     th { background: #f5f3ff; padding: 12px 8px; font-weight: 800; border-bottom: 3px solid var(--primary); font-size: 14px; }
     td { padding: 10px 8px; border-bottom: 1px solid var(--border); text-align: center; font-size: 13px; }
-    tr:hover td { background: #faf8ff; }
 
     .btn { padding: 6px 10px; margin: 1px; border: none; border-radius: 6px; cursor: pointer; color: #fff; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; gap: 3px; transition: 0.2s; }
     .btn:hover { transform: scale(1.05); }
@@ -102,7 +112,6 @@
     .btn-ocr { background: #f97316; } .btn-word { background: #0ea5e9; } .btn-bulk { background: #059669; }
 
     .score-input { width: 55px; padding: 6px; border: 2px solid var(--border); border-radius: 6px; text-align: center; font-size: 14px; font-weight: 700; }
-    .score-input:focus { border-color: var(--primary); outline: none; }
     .total-score { font-weight: 900; font-size: 16px; }
     .score-high { color: #10b981; } .score-mid { color: #f59e0b; } .score-low { color: #ef4444; }
 
@@ -115,9 +124,15 @@
     .ai-card h3 { color: #5b21b6; margin-bottom: 8px; font-size: 16px; }
     .ai-suggestion { background: #fff; padding: 10px; border-radius: 8px; margin: 4px 0; font-size: 13px; }
 
-    @media (max-width: 1200px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 800px) { :root { --sidebar-w: 280px; } }
-    @media (max-width: 600px) { .app-container { flex-direction: column; } .sidebar { position: relative; width: 100%; min-width: 100%; } .content { margin-right: 0; } .grid, .stats-row { grid-template-columns: 1fr; } }
+    .store-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .store-stage-card { background: var(--card); border-radius: 12px; padding: 12px; box-shadow: var(--shadow); border: 2px solid var(--border); min-height: 220px; display: flex; flex-direction: column; }
+    .stage-header { font-size: 16px; font-weight: 900; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid var(--primary); }
+    .stage-files { flex: 1; overflow-y: auto; max-height: 150px; }
+    .upload-btn { width: 100%; padding: 8px; background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 12px; }
+
+    @media (max-width: 1200px) { .grid, .store-grid { grid-template-columns: repeat(2, 1fr); } .dash-layout { grid-template-columns: 1fr 280px; } }
+    @media (max-width: 800px) { :root { --sidebar-w: 280px; } .dash-layout { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .app-container { flex-direction: column; } .sidebar { position: relative; width: 100%; min-width: 100%; } .content { margin-right: 0; } .grid, .stats-row, .store-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -125,8 +140,18 @@
   <nav class="sidebar">
     <div class="logo"><span class="sicon">📜</span><h2>د. محمد سعيد</h2><p>مدرس تاريخ</p></div>
     <nav>
+      <span class="nav-label">القائمة</span>
       <button class="active" onclick="navigateTo('dashboard')"><span class="nav-icon">🏠</span> الرئيسية</button>
-      <button onclick="navigateTo('classes')"><span class="nav-icon">🏫</span> الفصول</button>
+      <button onclick="navigateTo('students')"><span class="nav-icon">👨‍🎓</span> الطلاب</button>
+      <button onclick="navigateTo('groups')"><span class="nav-icon">👥</span> المجموعات</button>
+      <button onclick="navigateTo('attendance')"><span class="nav-icon">📋</span> الحضور</button>
+      <button onclick="navigateTo('payments')"><span class="nav-icon">💰</span> المدفوعات</button>
+      <button onclick="navigateTo('exams')"><span class="nav-icon">📝</span> الامتحانات</button>
+      <button onclick="navigateTo('store')"><span class="nav-icon">🗄️</span> المخزن</button>
+      <button onclick="navigateTo('questionbank')"><span class="nav-icon">📚</span> بنك الأسئلة</button>
+      <button onclick="navigateTo('homework')"><span class="nav-icon">📖</span> الواجبات</button>
+      <button onclick="navigateTo('tasks')"><span class="nav-icon">✅</span> المهام</button>
+      <button onclick="navigateTo('halloffame')"><span class="nav-icon">🏆</span> لوحة الشرف</button>
       <button onclick="navigateTo('aireport')"><span class="nav-icon">🤖</span> تحليل AI</button>
       <button onclick="navigateTo('reports')"><span class="nav-icon">📊</span> التقارير</button>
     </nav>
@@ -142,13 +167,59 @@
 
 <script>
 // ==================== DATA LAYER ====================
-const PF = 'dr_mohamed_saeed_';
+const PF = 'dr_mohamed_saeed_v2_';
 function gid() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 5); }
 function get(k) { return JSON.parse(localStorage.getItem(PF + k) || '[]'); }
 function set(k, v) { localStorage.setItem(PF + k, JSON.stringify(v)); }
-const classes = () => get('classes'), saveClasses = (v) => set('classes', v), classById = (id) => classes().find(c => c.id === id);
+const students = () => get('students'), saveStudents = (v) => set('students', v), studentById = (id) => students().find(s => s.id === id);
+const groups = () => get('groups'), saveGroups = (v) => set('groups', v), groupById = (id) => groups().find(g => g.id === id);
+const attendance = () => get('attendance'), saveAttendance = (v) => set('attendance', v);
+const payments = () => get('payments'), savePayments = (v) => set('payments', v);
+const exams = () => get('exams'), saveExams = (v) => set('exams', v);
+const schedule = () => get('schedule'), saveSchedule = (v) => set('schedule', v);
+const questionBank = () => get('questionbank'), saveQuestionBank = (v) => set('questionbank', v);
+const homework = () => get('homework'), saveHomework = (v) => set('homework', v);
+const tasks = () => get('tasks'), saveTasks = (v) => set('tasks', v);
+const favorites = () => get('favorites'), saveFavorites = (v) => set('favorites', v);
 const notifications = () => get('notifications'), saveNotifications = (v) => set('notifications', v);
 
+const DAYS = ['الجمعة', 'السبت', 'الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
+if (!localStorage.getItem(PF + 'schedule')) { const init = {}; DAYS.forEach(d => init[d] = []); saveSchedule(init); }
+
+const DB_NAME = 'DrMohamedSaeedStore', DB_VERSION = 1;
+let db = null;
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+    request.onupgradeneeded = function(event) { const db = event.target.result; if (!db.objectStoreNames.contains('files')) db.createObjectStore('files', { keyPath: 'id' }); };
+    request.onsuccess = function(event) { db = event.target.result; resolve(db); };
+    request.onerror = function(event) { reject(event.target.error); };
+  });
+}
+async function getStoreFiles() {
+  if (!db) await openDB();
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(['files'], 'readonly');
+    const store = transaction.objectStore('files');
+    const request = store.getAll();
+    request.onsuccess = function() { resolve(request.result || []); };
+    request.onerror = function() { reject(request.error); };
+  });
+}
+async function saveStoreFiles(files) {
+  if (!db) await openDB();
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(['files'], 'readwrite');
+    const store = transaction.objectStore('files');
+    store.clear();
+    files.forEach(file => store.put(file));
+    transaction.oncomplete = function() { resolve(); };
+    transaction.onerror = function() { reject(transaction.error); };
+  });
+}
+
+function fileToBase64(file) { return new Promise(r => { const reader = new FileReader(); reader.onload = () => r(reader.result); reader.readAsDataURL(file); }); }
+function shareText(text) { if (navigator.share) navigator.share({ title: 'د. محمد سعيد', text }); else window.open('https://wa.me/?text=' + encodeURIComponent(text)); }
 function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => { t.style.animation = 'slideDown 0.3s reverse'; setTimeout(() => t.remove(), 300); }, 2000); }
 function addNotification(msg) { const n = notifications(); n.push({ id: gid(), msg, seen: false, time: Date.now() }); saveNotifications(n); }
 function toggleTheme() { document.body.classList.toggle('dark-mode'); localStorage.setItem(PF + 'theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light'); }
@@ -175,10 +246,14 @@ function shareAsPDF(elementId, fileName) {
     showToast('✅ تم التحميل كـ PDF');
   });
 }
-function shareText(text) { if (navigator.share) navigator.share({ title: 'د. محمد سعيد', text }); else window.open('https://wa.me/?text=' + encodeURIComponent(text)); }
+
+function generateQR(text, elementId) { const el = document.getElementById(elementId); if (!el) return; el.innerHTML = ''; const size = 200, canvas = document.createElement('canvas'); canvas.width = size; canvas.height = size; const ctx = canvas.getContext('2d'); ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, size, size); const mc = 21, ms = size / mc; function hashCode(str) { let hash = 0; for (let i = 0; i < str.length; i++) { hash = ((hash << 5) - hash) + str.charCodeAt(i); hash = hash & hash; } return Math.abs(hash); } const hash = hashCode(text); const rng = (seed) => { let s = seed; return () => { s = (s * 1103515245 + 12345) & 0x7fffffff; return s % 2 === 0; }; }; const random = rng(hash); ctx.fillStyle = '#000000'; for (let row = 0; row < mc; row++) { for (let col = 0; col < mc; col++) { if ((row < 7 && col < 7) || (row < 7 && col > mc - 8) || (row > mc - 8 && col < 7)) { if ((row === 0 || row === 6 || col === 0 || col === 6) || (row >= 2 && row <= 4 && col >= 2 && col <= 4)) ctx.fillRect(col * ms, row * ms, ms, ms); } else if (random()) ctx.fillRect(col * ms, row * ms, ms, ms); } } el.appendChild(canvas); }
+function showQR(id) { const s = studentById(id); if (!s) return; const existing = document.querySelector('.qr-modal'); if (existing) existing.remove(); const modal = document.createElement('div'); modal.className = 'qr-modal'; modal.innerHTML = `<div class="qr-modal-content"><h3>📱 ${s.name}</h3><div id="qr-container"></div><p>📞 ${s.phone}</p><button class="btn btn-back" onclick="this.closest('.qr-modal').remove()">❌ إغلاق</button></div>`; document.body.appendChild(modal); setTimeout(() => generateQR(`الطالب: ${s.name}\nالهاتف: ${s.phone}`, 'qr-container'), 100); }
+function sendTemplate(template, studentId) { const s = studentById(studentId); if (!s) return; const templates = { reminder: '📚 تذكير: موعد الحصة غداً.', exam: '📝 نتيجة امتحانك جاهزة.', payment: '💰 تذكير بدفع الرسوم.', thanks: '🌟 شكراً على اجتهادك!' }; window.open('https://wa.me/' + s.phone.replace(/[^0-9]/g,'') + '?text=' + encodeURIComponent(templates[template] || ''), '_blank'); showToast('✅ تم فتح واتساب'); }
 
 async function exportAllData() {
-  const d = { classes: classes() };
+  const storeData = await getStoreFiles();
+  const d = { students: students(), groups: groups(), attendance: attendance(), payments: payments(), exams: exams(), store: storeData, schedule: schedule(), questionBank: questionBank(), homework: homework(), tasks: tasks(), favorites: favorites() };
   const b = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' });
   const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'dr_mohamed_saeed_backup.json'; a.click();
   showToast('✅ تم التصدير');
@@ -186,601 +261,740 @@ async function exportAllData() {
 async function importAllData(e) {
   const f = e.target.files[0]; if (!f) return;
   const r = new FileReader();
-  r.onload = function(ev) {
+  r.onload = async function(ev) {
     try {
       const d = JSON.parse(ev.target.result);
-      if (d.classes) saveClasses(d.classes);
+      if (d.students) saveStudents(d.students); if (d.groups) saveGroups(d.groups);
+      if (d.attendance) saveAttendance(d.attendance); if (d.payments) savePayments(d.payments);
+      if (d.exams) saveExams(d.exams); if (d.store) await saveStoreFiles(d.store);
+      if (d.schedule) saveSchedule(d.schedule); if (d.questionBank) saveQuestionBank(d.questionBank);
+      if (d.homework) saveHomework(d.homework); if (d.tasks) saveTasks(d.tasks); if (d.favorites) saveFavorites(d.favorites);
       showToast('✅ تم الاستيراد'); navigateTo('dashboard');
     } catch(er) { alert('❌ فشل'); }
   };
   r.readAsText(f);
 }
 
-function navigateTo(page) { const fn = window['load' + page.charAt(0).toUpperCase() + page.slice(1)]; if (fn) fn(); document.querySelectorAll('.sidebar nav button').forEach(b => b.classList.remove('active')); const titles = { dashboard: 'الرئيسية', classes: 'الفصول', aireport: 'تحليل AI', reports: 'التقارير' }; document.querySelectorAll('.sidebar nav button').forEach(b => { if (b.textContent.includes(titles[page]||'')) b.classList.add('active'); }); }
+function navigateTo(page) { const fn = window['load' + page.charAt(0).toUpperCase() + page.slice(1)]; if (fn) fn(); document.querySelectorAll('.sidebar nav button').forEach(b => b.classList.remove('active')); const titles = { dashboard: 'الرئيسية', students: 'الطلاب', groups: 'المجموعات', attendance: 'الحضور', payments: 'المدفوعات', exams: 'الامتحانات', store: 'المخزن', questionbank: 'بنك الأسئلة', homework: 'الواجبات', tasks: 'المهام', halloffame: 'لوحة الشرف', aireport: 'تحليل AI', reports: 'التقارير' }; document.querySelectorAll('.sidebar nav button').forEach(b => { if (b.textContent.includes(titles[page]||'')) b.classList.add('active'); }); }
 window.addEventListener('DOMContentLoaded', () => navigateTo('dashboard'));
 
 // ==================== DASHBOARD ====================
 function loadDashboard() {
   const m = document.getElementById('main-content');
-  const cls = classes();
-  const totalStudents = cls.reduce((sum, c) => sum + (c.students ? c.students.length : 0), 0);
-  const allScores = [];
-  cls.forEach(c => (c.students || []).forEach(s => allScores.push((s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0))));
-  const avgScore = allScores.length ? Math.round(allScores.reduce((a,b) => a + b, 0) / allScores.length) : 0;
-  const excellent = allScores.filter(s => s >= 85).length;
+  const st = students(), gr = groups(), att = attendance(), pay = payments(), ex = exams();
+  const today = new Date().toISOString().slice(0,10);
+  const pres = att.filter(a => a.date === today && a.status === 'present').length;
+  const tot = pay.reduce((s,p) => s + p.amount, 0);
+  const ov = st.filter(s => pay.filter(p => p.studentId === s.id).length === 0);
+  const notifs = notifications().filter(n => !n.seen).slice(-3);
+  const sch = schedule();
+  const hwCount = homework().filter(h => h.status !== 'done').length;
 
-  let h = `<div class="dash-header"><h1>📜 أهلاً بك د. محمد سعيد</h1><p>إدارة صفوف مادة التاريخ</p></div>
-  <div class="stats-row">
-    <div class="stat-card animate-fadeInUp"><div class="sicon" style="background:#ede9fe;">🏫</div><div><div class="sval">${cls.length}</div><div class="slbl">فصل</div></div></div>
-    <div class="stat-card animate-fadeInUp"><div class="sicon" style="background:#dbeafe;">👨‍🎓</div><div><div class="sval">${totalStudents}</div><div class="slbl">طالب</div></div></div>
-    <div class="stat-card animate-fadeInUp"><div class="sicon" style="background:#d1fae5;">📊</div><div><div class="sval">${avgScore}%</div><div class="slbl">متوسط عام</div></div></div>
-    <div class="stat-card animate-fadeInUp"><div class="sicon" style="background:#fef3c7;">⭐</div><div><div class="sval">${excellent}</div><div class="slbl">ممتازين</div></div></div>
+  let h = `<div class="dash-header"><h1>📜 أهلاً بك د. محمد سعيد</h1><p>لوحة تحكم مدرس التاريخ</p></div>
+  <div class="dash-layout">
+    <div>
+      <div class="stats-row">
+        <div class="stat-card"><div class="sicon" style="background:#ede9fe;">👨‍🎓</div><div><div class="sval">${st.length}</div><div class="slbl">طالب</div></div></div>
+        <div class="stat-card"><div class="sicon" style="background:#dbeafe;">👥</div><div><div class="sval">${gr.length}</div><div class="slbl">مجموعة</div></div></div>
+        <div class="stat-card"><div class="sicon" style="background:#d1fae5;">📋</div><div><div class="sval">${pres}</div><div class="slbl">حضور</div></div></div>
+        <div class="stat-card"><div class="sicon" style="background:#fef3c7;">💰</div><div><div class="sval">${tot} ج.م</div><div class="slbl">مدفوعات</div></div></div>
+      </div>`;
+  if (ov.length) h += `<div class="alert">⚠️ ${ov.length} طلاب لم يسددوا: ${ov.map(s=>s.name).join('، ')}</div>`;
+  if (notifs.length > 0) { h += `<div>`; notifs.forEach(n => h += `<div class="notification" onclick="dismissNotification('${n.id}', this)">🔔 ${n.msg}</div>`); h += `</div>`; }
+  h += `<div class="grid">
+    <div class="dash-card" onclick="navigateTo('students')"><span class="ico">👨‍🎓</span><div class="ttl">الطلاب</div><div class="sub">${st.length} طالب</div></div>
+    <div class="dash-card" onclick="navigateTo('groups')"><span class="ico">👥</span><div class="ttl">المجموعات</div><div class="sub">${gr.length} مجموعة</div></div>
+    <div class="dash-card" onclick="navigateTo('attendance')"><span class="ico">📋</span><div class="ttl">الحضور</div><div class="sub">${pres} حاضر</div></div>
+    <div class="dash-card" onclick="navigateTo('payments')"><span class="ico">💰</span><div class="ttl">المدفوعات</div><div class="sub">${tot} ج.م</div></div>
+    <div class="dash-card" onclick="navigateTo('exams')"><span class="ico">📝</span><div class="ttl">الامتحانات</div><div class="sub">${ex.length} امتحان</div></div>
+    <div class="dash-card" onclick="navigateTo('store')"><span class="ico">🗄️</span><div class="ttl">المخزن</div><div class="sub">ملفات غير محدودة</div></div>
+    <div class="dash-card" onclick="navigateTo('questionbank')"><span class="ico">📚</span><div class="ttl">بنك الأسئلة</div><div class="sub">${questionBank().length} سؤال</div></div>
+    <div class="dash-card" onclick="navigateTo('homework')"><span class="ico">📖</span><div class="ttl">الواجبات</div><div class="sub">${hwCount} متبقي</div></div>
+    <div class="dash-card" onclick="navigateTo('halloffame')"><span class="ico">🏆</span><div class="ttl">لوحة الشرف</div><div class="sub">الأفضل</div></div>
+    <div class="dash-card" onclick="navigateTo('aireport')"><span class="ico">🤖</span><div class="ttl">تحليل AI</div><div class="sub">توقعات</div></div>
+    <div class="dash-card" onclick="navigateTo('reports')"><span class="ico">📊</span><div class="ttl">التقارير</div><div class="sub">Excel/PDF</div></div>
   </div>
-  <div class="grid">
-    <div class="dash-card stagger-1" onclick="navigateTo('classes')"><span class="ico">🏫</span><div class="ttl">الفصول</div><div class="sub">${cls.length} فصل</div></div>
-    <div class="dash-card stagger-2" onclick="navigateTo('aireport')"><span class="ico">🤖</span><div class="ttl">تحليل AI</div><div class="sub">توقعات واقتراحات</div></div>
-    <div class="dash-card stagger-3" onclick="navigateTo('reports')"><span class="ico">📊</span><div class="ttl">التقارير</div><div class="sub">Excel / PDF / Word</div></div>
   </div>`;
-  m.innerHTML = h;
-}
 
-// ==================== CLASSES PAGE ====================
-function loadClasses() {
-  const m = document.getElementById('main-content');
-  const cls = classes();
-  let h = `<div class="page"><h2>🏫 الفصول
-    <div class="page-actions">
-      <button class="btn btn-img" onclick="shareAsImage('classes-content', 'الفصول')">📸</button>
-      <button class="btn btn-pdf" onclick="shareAsPDF('classes-content', 'الفصول')">📄</button>
-      <button class="btn btn-excel" onclick="exportClassesExcel()">📥 Excel</button>
-    </div>
-  </h2>
-  <div id="classes-content">
-    <form id="cf">
-      <input type="text" id="cn" placeholder="اسم الفصل (مثال: 1/1)" required>
-      <button type="submit">➕ إضافة فصل</button>
-    </form>
-    <div class="grid">`;
-  cls.forEach(c => {
-    const studentCount = c.students ? c.students.length : 0;
-    h += `<div class="dash-card" onclick="openClass('${c.id}')">
-      <span class="ico">🏫</span>
-      <div class="ttl">${c.name}</div>
-      <div class="sub">${studentCount} طالب</div>
-      <div style="margin-top:8px;display:flex;gap:5px;">
-        <button class="btn btn-edit" onclick="event.stopPropagation(); renameClass('${c.id}')">✏️</button>
-        <button class="btn btn-del" onclick="event.stopPropagation(); deleteClass('${c.id}')">🗑️</button>
+  h += `<div class="schedule-panel" id="schedule-panel">
+    <h3>📅 جدول الأسبوع
+      <div style="display:flex;gap:4px;">
+        <button class="btn btn-save" onclick="shareAsImage('schedule-panel', 'الجدول')" style="font-size:10px;padding:4px 6px;">📸</button>
+        <button class="btn btn-pdf" onclick="shareAsPDF('schedule-panel', 'الجدول')" style="font-size:10px;padding:4px 6px;">📄</button>
       </div>
-    </div>`;
+    </h3>
+    <table class="schedule-table"><thead><tr>`;
+  DAYS.forEach(d => h += `<th>${d}</th>`);
+  h += `</tr></thead><tbody><tr>`;
+  DAYS.forEach(d => {
+    h += `<td><span onclick="addScheduleItem('${d}')">${d} ＋</span>`;
+    const items = sch[d] || [];
+    if (items.length === 0) h += `<div class="empty-day" onclick="addScheduleItem('${d}')">＋</div>`;
+    else items.forEach((item, i) => h += `<div class="schedule-item"><span class="si-del" onclick="deleteScheduleItem('${d}', ${i}); event.stopPropagation();">🗑️</span>🕐 ${item.time}<br>👥 ${item.group}</div>`);
+    h += `</td>`;
   });
-  if (!cls.length) h += '<p style="text-align:center;padding:30px;">لا توجد فصول - أضف أول فصل</p>';
-  h += `</div></div></div>`;
+  h += `</tr></tbody></table></div></div>`;
   m.innerHTML = h;
-  document.getElementById('cf').onsubmit = function(e) {
-    e.preventDefault();
-    const name = document.getElementById('cn').value.trim();
-    if (!name) return;
-    saveClasses([...classes(), { id: gid(), name, students: [] }]);
-    showToast('✅ تم إضافة الفصل');
-    loadClasses();
-  };
 }
 
-function renameClass(id) {
-  const c = classById(id);
-  if (!c) return;
-  const name = prompt('الاسم الجديد:', c.name);
-  if (!name) return;
-  const all = classes();
-  all[all.findIndex(x => x.id === id)].name = name;
-  saveClasses(all);
-  loadClasses();
+function dismissNotification(id, element) { element.classList.add('dismissing'); setTimeout(() => { const n = notifications(); const idx = n.findIndex(x => x.id === id); if (idx > -1) { n[idx].seen = true; saveNotifications(n); } if (element.parentNode) element.remove(); }, 400); }
+
+function addScheduleItem(dayName) {
+  if (!dayName) {
+    const day = prompt('اختر اليوم:\n' + DAYS.map((d,i) => (i+1)+'- '+d).join('\n'), '1');
+    if (!day) return;
+    dayName = DAYS[parseInt(day) - 1];
+  }
+  const time = prompt('الوقت:', '');
+  if (time === null) return;
+  const group = prompt('المجموعة:', '');
+  if (group === null) return;
+  const sch = schedule();
+  if (!sch[dayName]) sch[dayName] = [];
+  sch[dayName].push({ time, group, subject: 'تاريخ' });
+  saveSchedule(sch);
+  showToast('✅ تمت الإضافة');
+  loadDashboard();
 }
 
-function deleteClass(id) {
-  if (!confirm('حذف الفصل وكل طلابه؟')) return;
-  saveClasses(classes().filter(c => c.id !== id));
-  loadClasses();
+function deleteScheduleItem(day, index) {
+  const sch = schedule();
+  if (sch[day]) { sch[day].splice(index, 1); saveSchedule(sch); showToast('🗑️ تم الحذف'); loadDashboard(); }
 }
-
-function openClass(id) {
-  const c = classById(id);
-  if (!c) return;
-  const m = document.getElementById('main-content');
-  let h = `<div class="page"><h2>🏫 ${c.name}
+// ==================== STUDENTS PAGE ====================
+function loadStudents() {
+  const m = document.getElementById('main-content'), gr = groups();
+  let h = `<div class="page"><h2>👨‍🎓 الطلاب
     <div class="page-actions">
-      <button class="btn btn-back" onclick="loadClasses()">⬅️ رجوع</button>
-      <button class="btn btn-img" onclick="shareAsImage('class-content', '${c.name}')">📸</button>
-      <button class="btn btn-pdf" onclick="shareAsPDF('class-content', '${c.name}')">📄</button>
-      <button class="btn btn-excel" onclick="exportClassExcel('${c.id}')">📥 Excel</button>
-      <button class="btn btn-ocr" onclick="scanPaper('${c.id}')">📷 سكان</button>
-      <button class="btn btn-bulk" onclick="bulkAdd('${c.id}')">📝 إضافة جماعي</button>
+      <button class="btn btn-img" onclick="shareAsImage('students-content', 'الطلاب')">📸</button>
+      <button class="btn btn-pdf" onclick="shareAsPDF('students-content', 'الطلاب')">📄</button>
     </div>
   </h2>
-  <div id="class-content">
+  <div id="students-content">
+    <div class="search"><input type="text" id="ss" placeholder="🔍 بحث..." oninput="renderStudentTable(filterStudentList())"></div>
     <form id="sf">
       <input type="text" id="sn" placeholder="اسم الطالب" required>
-      <button type="submit">➕ إضافة طالب</button>
+      <input type="tel" id="sp" placeholder="الهاتف" required>
+      <input type="tel" id="sg" placeholder="ولي الأمر">
+      <select id="sgr"><option value="">-- المجموعة --</option>${gr.map(g=>`<option value="${g.id}">${g.name}</option>`).join('')}</select>
+      <button type="submit">➕ إضافة</button>
     </form>
-    <table>
-      <thead><tr><th>#</th><th>الطالب</th><th>أعمال (70)</th><th>شهر1 (15)</th><th>شهر2 (15)</th><th>المجموع</th><th>النسبة</th><th>تقدير</th><th>تقرير</th><th>واتساب</th><th>حذف</th></tr></thead>
-      <tbody>`;
-  const students = c.students || [];
-  students.forEach((s, i) => {
-    const workScore = s.workScore !== undefined ? s.workScore : 70;
-    const month1 = s.month1Score || 0;
-    const month2 = s.month2Score || 0;
-    const total = workScore + month1 + month2;
-    const pct = Math.round((total / 100) * 100);
-    const scoreClass = pct >= 85 ? 'score-high' : pct >= 50 ? 'score-mid' : 'score-low';
-    const grade = pct >= 85 ? 'ممتاز' : pct >= 70 ? 'جيد جداً' : pct >= 50 ? 'جيد' : 'ضعيف';
-    h += `<tr>
-      <td>${i + 1}</td>
-      <td><strong>${s.name}</strong></td>
-      <td><input type="number" class="score-input" value="${workScore}" min="0" max="70" onchange="updateScore('${c.id}', '${s.id}', 'workScore', this.value)"></td>
-      <td><input type="number" class="score-input" value="${month1}" min="0" max="15" onchange="updateScore('${c.id}', '${s.id}', 'month1Score', this.value)"></td>
-      <td><input type="number" class="score-input" value="${month2}" min="0" max="15" onchange="updateScore('${c.id}', '${s.id}', 'month2Score', this.value)"></td>
-      <td class="total-score ${scoreClass}">${total}</td>
-      <td class="${scoreClass}">${pct}%</td>
-      <td>${grade}</td>
-      <td><button class="btn btn-pdf" onclick="generateStudentReport('${c.id}', '${s.id}')">📄</button>
-          <button class="btn btn-word" onclick="generateStudentWord('${c.id}', '${s.id}')">📝</button></td>
-      <td><button class="btn btn-wa" onclick="sendStudentResult('${c.id}', '${s.id}')">📱</button></td>
-      <td><button class="btn btn-del" onclick="deleteStudent('${c.id}', '${s.id}')">🗑️</button></td>
-    </tr>`;
-  });
-  if (!students.length) h += '<tr><td colspan="11">لا يوجد طلاب</td></tr>';
-  h += `</tbody></table></div></div>`;
+    <table><thead><tr><th>الاسم</th><th>الهاتف</th><th>المجموعة</th><th>نقاط</th><th>مفضلة</th><th>QR</th><th>قالب</th><th>مشاركة</th><th>إجراءات</th></tr></thead><tbody id="stb"></tbody></table>
+  </div></div>`;
   m.innerHTML = h;
-  document.getElementById('sf').onsubmit = function(e) {
-    e.preventDefault();
-    const name = document.getElementById('sn').value.trim();
-    if (!name) return;
-    const all = classes();
-    const idx = all.findIndex(x => x.id === id);
-    if (idx > -1) {
-      if (!all[idx].students) all[idx].students = [];
-      all[idx].students.push({ id: gid(), name, workScore: 70, month1Score: 0, month2Score: 0 });
-      saveClasses(all);
-      showToast('✅ تمت الإضافة');
-      openClass(id);
-    }
-  };
+  renderStudentTable(students());
+  document.getElementById('sf').onsubmit = function(e) { e.preventDefault(); const n = document.getElementById('sn').value.trim(), p = document.getElementById('sp').value.trim(); const g = document.getElementById('sg').value.trim(), gid2 = document.getElementById('sgr').value; if (!n || !p) return alert('الاسم والهاتف مطلوبان'); saveStudents([...students(), { id: gid(), name: n, phone: p, guardianPhone: g || null, groupId: gid2 || null, points: 0 }]); addNotification('👨‍🎓 طالب جديد: ' + n); loadStudents(); };
 }
 
-function bulkAdd(classId) {
-  const names = prompt('الصق أسماء الطلاب (كل اسم في سطر):');
-  if (!names) return;
-  const nameList = names.split('\n').map(n => n.trim()).filter(n => n);
-  if (!nameList.length) return alert('لا توجد أسماء');
-  const all = classes();
-  const idx = all.findIndex(c => c.id === classId);
-  if (idx > -1) {
-    if (!all[idx].students) all[idx].students = [];
-    nameList.forEach(name => {
-      all[idx].students.push({ id: gid(), name, workScore: 70, month1Score: 0, month2Score: 0 });
-    });
-    saveClasses(all);
-    showToast('✅ تمت إضافة ' + nameList.length + ' طلاب');
-    openClass(classId);
-  }
+function filterStudentList() {
+  let list = students();
+  const q = document.getElementById('ss')?.value.toLowerCase();
+  if (q) list = list.filter(s => s.name.toLowerCase().includes(q) || s.phone.includes(q));
+  return list;
 }
 
-function scanPaper(classId) {
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = 'image/*';
-  input.onchange = async function() {
-    if (!this.files[0]) return;
-    showToast('⏳ جاري قراءة الورق...');
-    try {
-      const result = await Tesseract.recognize(this.files[0], 'ara+eng');
-      const text = result.data.text;
-      alert('تم قراءة النص:\n\n' + text);
-      showToast('✅ تم القراءة');
-    } catch(e) {
-      alert('❌ فشل القراءة');
-    }
-  };
-  input.click();
+function renderStudentTable(list) {
+  const gr = groups(), tbody = document.getElementById('stb');
+  if (!tbody) return;
+  const favs = favorites();
+  tbody.innerHTML = list.map(s => {
+    const g = gr.find(x => x.id === s.groupId);
+    const isFav = favs.includes(s.id);
+    return `<tr><td><strong>${s.name}</strong></td><td>${s.phone}</td><td>${g?g.name:'—'}</td><td><span class="points">⭐ ${s.points||0}</span></td>
+    <td><button class="btn ${isFav ? 'btn-save' : 'btn-edit'}" onclick="toggleFavorite('${s.id}')">${isFav ? '⭐' : '☆'}</button></td>
+    <td><button class="btn btn-qr" onclick="showQR('${s.id}')">📱</button></td>
+    <td><button class="btn btn-template" onclick="showTemplates('${s.id}')">📋</button></td>
+    <td><button class="btn btn-share" onclick="shareStudent('${s.id}')">📤</button></td>
+    <td><button class="btn btn-view" onclick="viewStudent('${s.id}')">👁️</button><button class="btn btn-edit" onclick="editStudent('${s.id}')">✏️</button><button class="btn btn-del" onclick="deleteStudentFull('${s.id}')">🗑️</button></td></tr>`;
+  }).join('');
 }
 
-function updateScore(classId, studentId, field, value) {
-  const all = classes();
-  const cIdx = all.findIndex(c => c.id === classId);
-  if (cIdx > -1) {
-    const sIdx = all[cIdx].students.findIndex(s => s.id === studentId);
-    if (sIdx > -1) {
-      all[cIdx].students[sIdx][field] = parseInt(value) || 0;
-      saveClasses(all);
-      showToast('✅ تم التحديث');
-    }
-  }
+function toggleFavorite(id) {
+  const favs = favorites();
+  const idx = favs.indexOf(id);
+  if (idx > -1) favs.splice(idx, 1);
+  else favs.push(id);
+  saveFavorites(favs);
+  loadStudents();
 }
 
-function deleteStudent(classId, studentId) {
-  if (!confirm('حذف الطالب؟')) return;
-  const all = classes();
-  const cIdx = all.findIndex(c => c.id === classId);
-  if (cIdx > -1) {
-    all[cIdx].students = all[cIdx].students.filter(s => s.id !== studentId);
-    saveClasses(all);
-    openClass(classId);
-  }
+function showTemplates(id) { const t = prompt('1- تذكير\n2- نتيجة\n3- دفع\n4- شكر', '1'); const map = { '1': 'reminder', '2': 'exam', '3': 'payment', '4': 'thanks' }; if (map[t]) sendTemplate(map[t], id); }
+
+function shareStudent(id) {
+  const s = studentById(id); if (!s) return;
+  const g = groupById(s.groupId);
+  shareText(`📋 ${s.name}\n📞 ${s.phone}\n👥 ${g?g.name:'—'}\n⭐ نقاط: ${s.points||0}\n---\nد. محمد سعيد - تاريخ`);
 }
 
-function sendStudentResult(classId, studentId) {
-  const c = classById(classId);
-  const s = c ? c.students.find(st => st.id === studentId) : null;
-  if (!s) return;
-  const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
-  const pct = Math.round((total / 100) * 100);
-  shareText(`📋 نتيجة ${s.name}\n📚 أعمال سنة: ${s.workScore || 70}/70\n📝 شهر 1: ${s.month1Score || 0}/15\n📝 شهر 2: ${s.month2Score || 0}/15\n📊 المجموع: ${total}/100 (${pct}%)\n---\nد. محمد سعيد - تاريخ`);
+function editStudent(id) {
+  const s = studentById(id); if (!s) return;
+  const n = prompt('الاسم:', s.name); if (n === null) return;
+  const p = prompt('الهاتف:', s.phone); if (p === null) return;
+  const guard = prompt('ولي الأمر:', s.guardianPhone || '');
+  const gr = groups();
+  const c = prompt('رقم المجموعة:\n' + gr.map((x,i) => (i+1)+'-'+x.name).join('\n') + '\n(0=بدون)', s.groupId ? gr.findIndex(x=>x.id===s.groupId)+1 : '0');
+  let gid2 = null; if (c && parseInt(c) > 0 && gr[parseInt(c)-1]) gid2 = gr[parseInt(c)-1].id;
+  const pts = parseInt(prompt('النقاط:', s.points||0)) || 0;
+  const all = students(); all[all.findIndex(x=>x.id===id)] = { ...s, name: n, phone: p, guardianPhone: guard||null, groupId: gid2, points: pts };
+  saveStudents(all); showToast('✅ تم التعديل'); loadStudents();
 }
 
-function generateStudentReport(classId, studentId) {
-  const c = classById(classId);
-  const s = c ? c.students.find(st => st.id === studentId) : null;
-  if (!s) return;
-  const workScore = s.workScore || 70;
-  const month1 = s.month1Score || 0;
-  const month2 = s.month2Score || 0;
-  const total = workScore + month1 + month2;
-  const pct = Math.round((total / 100) * 100);
-  const grade = pct >= 85 ? 'ممتاز' : pct >= 70 ? 'جيد جداً' : pct >= 50 ? 'جيد' : 'ضعيف';
-  const support = pct < 50 ? 'يحتاج دعم إضافي ومتابعة خاصة' : pct >= 85 ? 'يستحق مكافأة على التفوق' : 'يحتاج متابعة منتظمة';
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF('p', 'mm', 'a4');
-  doc.text(`تقرير الطالب: ${s.name}`, 105, 15, { align: 'center' });
-  doc.text(`الفصل: ${c.name}`, 20, 30, { align: 'right' });
-  doc.text(`أعمال السنة: ${workScore}/70`, 20, 38, { align: 'right' });
-  doc.text(`شهر 1: ${month1}/15`, 20, 46, { align: 'right' });
-  doc.text(`شهر 2: ${month2}/15`, 20, 54, { align: 'right' });
-  doc.text(`المجموع: ${total}/100 (${pct}%)`, 20, 62, { align: 'right' });
-  doc.text(`التقدير: ${grade}`, 20, 70, { align: 'right' });
-  doc.text(`التوصية: ${support}`, 20, 78, { align: 'right' });
-  doc.text('د. محمد سعيد - مادة التاريخ', 105, 90, { align: 'center' });
-  doc.save(`${s.name}_report.pdf`);
-  showToast('✅ تم إنشاء PDF');
+function deleteStudentFull(id) {
+  if (!confirm('⚠️ حذف الطالب وكل بياناته؟')) return;
+  saveStudents(students().filter(s => s.id !== id)); saveAttendance(attendance().filter(a => a.studentId !== id));
+  savePayments(payments().filter(p => p.studentId !== id)); saveExams(exams().filter(e => e.studentId !== id));
+  addNotification('🗑️ تم حذف طالب'); showToast('🗑️ تم الحذف'); loadStudents();
 }
 
-function generateStudentWord(classId, studentId) {
-  const c = classById(classId);
-  const s = c ? c.students.find(st => st.id === studentId) : null;
-  if (!s) return;
-  const workScore = s.workScore || 70;
-  const month1 = s.month1Score || 0;
-  const month2 = s.month2Score || 0;
-  const total = workScore + month1 + month2;
-  const pct = Math.round((total / 100) * 100);
-  const grade = pct >= 85 ? 'ممتاز' : pct >= 70 ? 'جيد جداً' : pct >= 50 ? 'جيد' : 'ضعيف';
-  const support = pct < 50 ? 'يحتاج دعم إضافي' : pct >= 85 ? 'يستحق مكافأة' : 'يحتاج متابعة';
-  const html = `<h2>تقرير الطالب: ${s.name}</h2><table>
-    <tr><td>الفصل</td><td>${c.name}</td></tr>
-    <tr><td>أعمال السنة</td><td>${workScore}/70</td></tr>
-    <tr><td>شهر 1</td><td>${month1}/15</td></tr>
-    <tr><td>شهر 2</td><td>${month2}/15</td></tr>
-    <tr><td>المجموع</td><td>${total}/100 (${pct}%)</td></tr>
-    <tr><td>التقدير</td><td>${grade}</td></tr>
-    <tr><td>التوصية</td><td>${support}</td></tr>
-  </table>`;
-  const blob = new Blob([html], { type: 'application/msword' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `${s.name}_report.doc`;
-  a.click();
-  showToast('✅ تم إنشاء Word');
-}
-
-function exportClassesExcel() {
-  const cls = classes();
-  const data = [['الفصل', 'عدد الطلاب', 'المتوسط']];
-  cls.forEach(c => {
-    const students = c.students || [];
-    const avg = students.length ? Math.round(students.reduce((sum, s) => sum + (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0), 0) / students.length) : 0;
-    data.push([c.name, students.length, avg + '%']);
-  });
-  const ws = XLSX.utils.aoa_to_sheet(data);
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'الفصول');
-  XLSX.writeFile(wb, 'classes_summary.xlsx');
-  showToast('✅ تم التصدير');
-}
-
-function exportClassExcel(classId) {
-  const c = classById(classId);
-  if (!c) return;
-  const data = [['#', 'الطالب', 'أعمال (70)', 'شهر1 (15)', 'شهر2 (15)', 'المجموع', 'النسبة', 'التقدير']];
-  (c.students || []).forEach((s, i) => {
-    const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
-    const pct = Math.round((total / 100) * 100);
-    const grade = pct >= 85 ? 'ممتاز' : pct >= 70 ? 'جيد جداً' : pct >= 50 ? 'جيد' : 'ضعيف';
-    data.push([i + 1, s.name, s.workScore || 70, s.month1Score || 0, s.month2Score || 0, total, pct + '%', grade]);
-  });
-  const ws = XLSX.utils.aoa_to_sheet(data);
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, c.name);
-  XLSX.writeFile(wb, c.name + '_grades.xlsx');
-  showToast('✅ تم التصدير');
-}
-// ==================== AI REPORT PAGE ====================
-function loadAireport() {
-  const m = document.getElementById('main-content');
-  const cls = classes();
-  const allStudents = [];
-  
-  cls.forEach(c => {
-    (c.students || []).forEach(s => {
-      const workScore = s.workScore !== undefined ? s.workScore : 70;
-      const month1 = s.month1Score || 0;
-      const month2 = s.month2Score || 0;
-      const total = workScore + month1 + month2;
-      const pct = Math.round((total / 100) * 100);
-      allStudents.push({
-        ...s,
-        className: c.name,
-        workScore,
-        month1,
-        month2,
-        total,
-        pct
-      });
-    });
-  });
-
-  const excellent = allStudents.filter(s => s.pct >= 85);
-  const good = allStudents.filter(s => s.pct >= 70 && s.pct < 85);
-  const average = allStudents.filter(s => s.pct >= 50 && s.pct < 70);
-  const weak = allStudents.filter(s => s.pct < 50);
-  
-  const improvingStudents = allStudents.filter(s => s.month2 > s.month1);
-  const decliningStudents = allStudents.filter(s => s.month2 < s.month1);
-  const stableStudents = allStudents.filter(s => s.month2 === s.month1);
-  
-  const lowWorkScore = allStudents.filter(s => s.workScore < 60);
-
-  const predictions = allStudents.map(s => {
-    let predicted = s.pct;
-    if (s.month2 > s.month1) predicted += 5;
-    if (s.month2 < s.month1) predicted -= 5;
-    if (s.workScore < 50) predicted -= 10;
-    if (s.workScore >= 65) predicted += 5;
-    return { ...s, predictedPct: Math.max(0, Math.min(100, predicted)) };
-  });
-
-  const classAverages = cls.map(c => {
-    const students = c.students || [];
-    const avg = students.length ? Math.round(students.reduce((sum, s) => sum + (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0), 0) / students.length) : 0;
-    const passRate = students.length ? Math.round((students.filter(s => ((s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0)) >= 50).length / students.length) * 100) : 0;
-    return { className: c.name, avg, passRate, studentCount: students.length };
-  });
-
-  let h = `<div class="page"><h2>🤖 تحليل الذكاء الاصطناعي - تاريخ
+function viewStudent(id) {
+  const s = studentById(id); if (!s) return;
+  const g = groupById(s.groupId), att = attendance().filter(a => a.studentId === s.id);
+  const pay = payments().filter(p => p.studentId === s.id), ex = exams().filter(e => e.studentId === s.id);
+  const tot = pay.reduce((sum,p) => sum + p.amount, 0), pres = att.filter(a => a.status === 'present').length;
+  const pct = att.length ? Math.round((pres/att.length)*100) : 0, avg = ex.length ? (ex.reduce((sm,e)=>sm+e.score,0)/ex.length).toFixed(1) : 0;
+  document.getElementById('main-content').innerHTML = `<div class="page" id="student-profile"><h2>📋 ${s.name} <span class="points">⭐ ${s.points||0}</span>
     <div class="page-actions">
-      <button class="btn btn-img" onclick="shareAsImage('ai-content', 'تحليل_AI')">📸</button>
-      <button class="btn btn-pdf" onclick="shareAsPDF('ai-content', 'تحليل_AI')">📄</button>
+      <button class="btn btn-img" onclick="shareAsImage('student-profile', '${s.name}')">📸</button>
+      <button class="btn btn-pdf" onclick="shareAsPDF('student-profile', '${s.name}')">📄</button>
     </div>
   </h2>
-  <div id="ai-content">`;
+  <table><tr><td>📞</td><td>${s.phone}</td></tr><tr><td>👨‍👩‍👦</td><td>${s.guardianPhone||'—'}</td></tr><tr><td>👥</td><td>${g?g.name:'—'}</td></tr><tr><td>📊</td><td>${pct}% (${pres}/${att.length})</td></tr><tr><td>💰</td><td>${tot} ج.م</td></tr><tr><td>📝</td><td>${avg}</td></tr></table>
+  <div class="act-bar">
+    <button class="btn btn-share" onclick="shareStudent('${s.id}')">📤</button>
+    <button class="btn btn-qr" onclick="showQR('${s.id}')">📱</button>
+    <button class="btn btn-wa" onclick="window.open('https://wa.me/${s.phone.replace(/[^0-9]/g,'')}')">💬</button>
+    <button class="btn btn-back" onclick="loadStudents()">⬅️ رجوع</button>
+  </div></div>`;
+}
 
-  h += `<div class="ai-card animate-fadeInUp">
-    <h3>📊 ملخص عام</h3>
-    <div class="ai-suggestion">🏫 عدد الفصول: <strong>${cls.length}</strong></div>
-    <div class="ai-suggestion">👨‍🎓 إجمالي الطلاب: <strong>${allStudents.length}</strong></div>
-    <div class="ai-suggestion">🌟 ممتاز (≥85%): <strong>${excellent.length} طالب</strong></div>
-    <div class="ai-suggestion">👍 جيد (70-84%): <strong>${good.length} طالب</strong></div>
-    <div class="ai-suggestion">📊 متوسط (50-69%): <strong>${average.length} طالب</strong></div>
-    <div class="ai-suggestion">⚠️ ضعيف (<50%): <strong>${weak.length} طالب</strong></div>
-  </div>`;
+// ==================== GROUPS PAGE ====================
+function loadGroups() {
+  const m = document.getElementById('main-content'), gr = groups(), st = students();
+  let h = `<div class="page"><h2>👥 المجموعات
+    <div class="page-actions">
+      <button class="btn btn-img" onclick="shareAsImage('groups-content', 'المجموعات')">📸</button>
+      <button class="btn btn-pdf" onclick="shareAsPDF('groups-content', 'المجموعات')">📄</button>
+    </div>
+  </h2>
+  <div id="groups-content">
+    <form id="gf"><input type="text" id="gn" placeholder="اسم المجموعة" required><input type="text" id="gs" placeholder="المواعيد"><input type="text" id="gcur" placeholder="وقفنا فين في المنهج"><button type="submit">➕ إضافة</button></form>
+    <table><thead><tr><th>المجموعة</th><th>المواعيد</th><th>المنهج</th><th>الطلاب</th><th>واتساب</th><th>قالب</th><th>تقرير</th><th>إجراءات</th></tr></thead><tbody>`;
+  gr.forEach(g => { const cnt = st.filter(s => s.groupId === g.id).length; h += `<tr><td><strong>${g.name}</strong></td><td>${g.schedule||'—'}</td><td>${g.curriculum||'—'} <button class="btn btn-edit" onclick="editCurriculum('${g.id}')">✏️</button></td><td>${cnt}</td><td><button class="btn btn-wa" onclick="sendWhatsappGroup('${g.id}')">📱</button></td><td><button class="btn btn-template" onclick="sendTemplateGroup('${g.id}')">📋</button></td><td><button class="btn btn-report" onclick="generateGroupReport('${g.id}')">📊</button></td><td><button class="btn btn-edit" onclick="editGroup('${g.id}')">✏️</button><button class="btn btn-del" onclick="deleteGroup('${g.id}')">🗑️</button></td></tr>`; });
+  if (!gr.length) h += '<tr><td colspan="8">لا توجد مجموعات</td></tr>';
+  h += '</tbody></table></div></div>';
+  m.innerHTML = h;
+  document.getElementById('gf').onsubmit = function(e) { e.preventDefault(); const n = document.getElementById('gn').value.trim(); if (!n) return; saveGroups([...groups(), { id: gid(), name: n, schedule: document.getElementById('gs').value.trim(), curriculum: document.getElementById('gcur').value.trim() }]); addNotification('👥 مجموعة جديدة: ' + n); loadGroups(); };
+}
 
-  h += `<div class="ai-card animate-fadeInUp">
-    <h3>📈 تحليل التحسن من شهر 1 لشهر 2</h3>
-    <div class="ai-suggestion">📈 طلاب بيتحسنوا: <strong>${improvingStudents.length}</strong></div>
-    <div class="ai-suggestion">📉 طلاب بينخفضوا: <strong>${decliningStudents.length}</strong></div>
-    <div class="ai-suggestion">➡️ طلاب ثابتين: <strong>${stableStudents.length}</strong></div>
-  </div>`;
+function generateGroupReport(gid2) {
+  const g = groupById(gid2); if (!g) return;
+  const st = students().filter(s => s.groupId === gid2);
+  const att = attendance().filter(a => a.groupId === gid2);
+  const pres = att.filter(a => a.status === 'present').length;
+  const pct = att.length ? Math.round((pres/att.length)*100) : 0;
+  const pay = payments().filter(p => st.some(s => s.id === p.studentId));
+  const tot = pay.reduce((sm,p) => sm + p.amount, 0);
+  shareText(`📋 مجموعة ${g.name}\n👥 الطلاب: ${st.length}\n📊 حضور: ${pct}%\n💰 مدفوعات: ${tot} ج.م\n📚 المنهج: ${g.curriculum||'—'}\n---\nد. محمد سعيد`);
+}
 
-  if (lowWorkScore.length > 0) {
-    h += `<div class="ai-card animate-fadeInUp">
-      <h3>⚠️ طلاب أعمال السنة منخفضة (<60)</h3>`;
-    lowWorkScore.forEach(s => h += `<div class="ai-suggestion">👨‍🎓 ${s.name} (${s.className}) - ${s.workScore}/70</div>`);
-    h += `</div>`;
-  }
+function editCurriculum(id) { const g = groupById(id); if (!g) return; const cur = prompt('المنهج:', g.curriculum || ''); if (cur === null) return; const all = groups(); all[all.findIndex(x=>x.id===id)].curriculum = cur; saveGroups(all); showToast('✅ تم التحديث'); loadGroups(); }
+function editGroup(id) { const g = groupById(id); if (!g) return; const n = prompt('الاسم:', g.name); if (n === null) return; const s = prompt('المواعيد:', g.schedule || ''); const cur = prompt('المنهج:', g.curriculum || ''); const all = groups(); all[all.findIndex(x=>x.id===id)] = { ...g, name: n, schedule: s, curriculum: cur }; saveGroups(all); loadGroups(); }
+function deleteGroup(id) { if (!confirm('حذف؟')) return; saveGroups(groups().filter(g => g.id !== id)); saveStudents(students().map(s => s.groupId === id ? {...s, groupId: null} : s)); loadGroups(); }
+function sendWhatsappGroup(gid2) { const st = students().filter(s => s.groupId === gid2); if (!st.length) return; const msg = prompt('الرسالة:'); if (!msg) return; st.forEach(s => { const p = s.phone.replace(/[^0-9]/g, ''); if (p) window.open('https://wa.me/' + p + '?text=' + encodeURIComponent(msg), '_blank'); }); }
+function sendTemplateGroup(gid2) { const st = students().filter(s => s.groupId === gid2); if (!st.length) return; const t = prompt('1- تذكير\n2- نتيجة\n3- دفع\n4- شكر', '1'); const map = { '1': 'reminder', '2': 'exam', '3': 'payment', '4': 'thanks' }; if (map[t]) st.forEach(s => sendTemplate(map[t], s.id)); }
 
-  if (weak.length > 0) {
-    h += `<div class="ai-card animate-fadeInUp">
-      <h3>🔴 طلاب يحتاجون تدخل فوري (المجموع <50%)</h3>`;
-    weak.forEach(s => h += `<div class="ai-suggestion">👨‍🎓 ${s.name} (${s.className}) - ${s.pct}%</div>`);
-    h += `</div>`;
-  }
+// ==================== ATTENDANCE PAGE ====================
+function loadAttendance() {
+  const m = document.getElementById('main-content'), gr = groups();
+  let h = `<div class="page"><h2>📋 الحضور
+    <div class="page-actions">
+      <button class="btn btn-img" onclick="shareAsImage('att-content', 'الحضور')">📸</button>
+      <button class="btn btn-pdf" onclick="shareAsPDF('att-content', 'الحضور')">📄</button>
+    </div>
+  </h2>
+  <div id="att-content">
+    <div style="display:flex;gap:10px;margin-bottom:14px;">
+      <select id="ag"><option value="">-- المجموعة --</option>${gr.map(g => `<option value="${g.id}">${g.name}</option>`).join('')}</select>
+      <input type="date" id="ad">
+      <button class="btn btn-view" onclick="showAttendance()">📅 عرض</button>
+    </div>
+    <div id="attf"></div>
+    <h3 style="margin-top:20px;">📅 السجل</h3>
+    <div id="atth"></div>
+  </div></div>`;
+  m.innerHTML = h;
+  renderAttHistory();
+}
 
-  if (excellent.length > 0) {
-    h += `<div class="ai-card animate-fadeInUp">
-      <h3>🌟 طلاب ممتازون - يستحقون مكافأة</h3>`;
-    excellent.forEach(s => h += `<div class="ai-suggestion">👨‍🎓 ${s.name} (${s.className}) - ${s.pct}% 🏅</div>`);
-    h += `</div>`;
-  }
-
-  h += `<div class="ai-card animate-fadeInUp">
-    <h3>🎯 توقعات الأداء النهائي</h3>
-    <table style="width:100%;">
-      <thead><tr><th>الطالب</th><th>الفصل</th><th>الحالي</th><th>المتوقع</th><th>الاتجاه</th></tr></thead>
-      <tbody>`;
-  predictions.forEach(s => {
-    const trend = s.predictedPct > s.pct ? '📈 يتحسن' : s.predictedPct < s.pct ? '📉 ينخفض' : '➡️ ثابت';
-    h += `<tr><td>${s.name}</td><td>${s.className}</td><td>${s.pct}%</td><td>${s.predictedPct}%</td><td>${trend}</td></tr>`;
+function showAttendance() {
+  const groupId = document.getElementById('ag').value;
+  const date = document.getElementById('ad').value;
+  if (!groupId || !date) return alert('اختر المجموعة والتاريخ');
+  const st = students().filter(s => s.groupId === groupId);
+  if (!st.length) return (document.getElementById('attf').innerHTML = '<p>لا يوجد طلاب</p>');
+  const existingRecords = attendance().filter(a => a.groupId === groupId && a.date === date);
+  const statusMap = {};
+  existingRecords.forEach(a => (statusMap[a.studentId] = a.status));
+  let formHtml = '<form id="saf"><table><thead><tr><th>الطالب</th><th>حاضر</th><th>غائب</th></tr></thead><tbody>';
+  st.forEach(s => {
+    const checkedPresent = statusMap[s.id] !== 'absent' ? 'checked' : '';
+    const checkedAbsent = statusMap[s.id] === 'absent' ? 'checked' : '';
+    formHtml += `<tr><td>${s.name}</td><td><input type="radio" name="a-${s.id}" value="present" ${checkedPresent}></td><td><input type="radio" name="a-${s.id}" value="absent" ${checkedAbsent}></td></tr>`;
   });
-  h += `</tbody></table></div>`;
+  formHtml += '</tbody></table><div class="act-bar"><button type="submit" class="btn btn-save">💾 حفظ</button></div></form>';
+  document.getElementById('attf').innerHTML = formHtml;
+  document.getElementById('saf').onsubmit = function(e) {
+    e.preventDefault();
+    let allRecords = attendance().filter(a => !(a.groupId === groupId && a.date === date));
+    st.forEach(s => { const radio = document.querySelector(`input[name="a-${s.id}"]:checked`); if (radio) allRecords.push({ id: gid(), studentId: s.id, groupId: groupId, date: date, status: radio.value }); });
+    saveAttendance(allRecords);
+    addNotification('📋 تم تسجيل الحضور');
+    showToast('✅ تم الحفظ');
+    loadAttendance();
+  };
+}
 
-  h += `<div class="ai-card animate-fadeInUp">
-    <h3>🏫 مقارنة الفصول</h3>
-    <table style="width:100%;">
-      <thead><tr><th>الفصل</th><th>عدد الطلاب</th><th>المتوسط</th><th>نسبة النجاح</th></tr></thead>
-      <tbody>`;
-  classAverages.forEach(c => {
-    h += `<tr><td>${c.className}</td><td>${c.studentCount}</td><td>${c.avg}%</td><td>${c.passRate}%</td></tr>`;
+function renderAttHistory() {
+  const all = attendance();
+  const container = document.getElementById('atth');
+  if (!container) return;
+  if (!all.length) return (container.innerHTML = '<p>لا يوجد سجل</p>');
+  const grouped = {};
+  all.forEach(a => { const key = a.date + '_' + a.groupId; if (!grouped[key]) grouped[key] = { date: a.date, groupId: a.groupId, present: 0, absent: 0 }; a.status === 'present' ? grouped[key].present++ : grouped[key].absent++; });
+  let tableHtml = '<table><thead><tr><th>التاريخ</th><th>المجموعة</th><th>حضور</th><th>غياب</th></tr></thead><tbody>';
+  Object.values(grouped).forEach(r => { const g = groupById(r.groupId); tableHtml += `<tr><td>${r.date}</td><td>${g ? g.name : '—'}</td><td>${r.present}</td><td>${r.absent}</td></tr>`; });
+  tableHtml += '</tbody></table>';
+  container.innerHTML = tableHtml;
+}
+
+// ==================== PAYMENTS PAGE ====================
+function loadPayments() {
+  const m = document.getElementById('main-content'), st = students(), pay = payments();
+  let h = `<div class="page"><h2>💰 المدفوعات
+    <div class="page-actions">
+      <button class="btn btn-img" onclick="shareAsImage('pay-content', 'المدفوعات')">📸</button>
+      <button class="btn btn-pdf" onclick="shareAsPDF('pay-content', 'المدفوعات')">📄</button>
+    </div>
+  </h2>
+  <div id="pay-content">
+    <form id="pf">
+      <select id="ps" required><option value="">-- الطالب --</option>${st.map(s => `<option value="${s.id}">${s.name}</option>`).join('')}</select>
+      <input type="number" id="pa" placeholder="المبلغ" required>
+      <input type="date" id="pd" required>
+      <input type="text" id="pn" placeholder="ملاحظات">
+      <button type="submit">➕ تسجيل</button>
+    </form>
+    <table><thead><tr><th>الطالب</th><th>المبلغ</th><th>التاريخ</th><th>ملاحظات</th><th>حذف</th></tr></thead><tbody>`;
+  pay.forEach(p => { const s = st.find(x => x.id === p.studentId); h += `<tr><td>${s ? s.name : '—'}</td><td>${p.amount} ج.م</td><td>${p.date}</td><td>${p.notes || ''}</td><td><button class="btn btn-del" onclick="deletePayment('${p.id}')">🗑️</button></td></tr>`; });
+  if (!pay.length) h += '<tr><td colspan="5">لا توجد مدفوعات</td></tr>';
+  h += '</tbody></table></div></div>';
+  m.innerHTML = h;
+  document.getElementById('pf').onsubmit = function(e) {
+    e.preventDefault();
+    const studentId = document.getElementById('ps').value;
+    const amount = parseFloat(document.getElementById('pa').value);
+    const date = document.getElementById('pd').value;
+    const notes = document.getElementById('pn').value.trim();
+    if (!studentId || isNaN(amount) || !date) return alert('البيانات ناقصة');
+    savePayments([...payments(), { id: gid(), studentId, amount, date, notes }]);
+    showToast('✅ تم التسجيل');
+    loadPayments();
+  };
+}
+function deletePayment(id) { if (!confirm('حذف؟')) return; savePayments(payments().filter(p => p.id !== id)); loadPayments(); }
+
+// ==================== EXAMS PAGE ====================
+function loadExams() {
+  const m = document.getElementById('main-content'), st = students(), ex = exams();
+  let h = `<div class="page"><h2>📝 الامتحانات
+    <div class="page-actions">
+      <button class="btn btn-img" onclick="shareAsImage('exam-content', 'الامتحانات')">📸</button>
+      <button class="btn btn-pdf" onclick="shareAsPDF('exam-content', 'الامتحانات')">📄</button>
+    </div>
+  </h2>
+  <div id="exam-content">
+    <form id="ef">
+      <select id="es" required><option value="">-- الطالب --</option>${st.map(s => `<option value="${s.id}">${s.name}</option>`).join('')}</select>
+      <input type="text" id="en" placeholder="اسم الامتحان" required>
+      <input type="number" id="esc" placeholder="الدرجة" required>
+      <input type="date" id="ed" required>
+      <label class="file-label" for="efile">📎 ملف</label>
+      <input type="file" id="efile" accept=".pdf,image/*" onchange="document.getElementById('fname').textContent=this.files[0]?.name||''">
+      <span id="fname"></span>
+      <button type="submit">➕ تسجيل</button>
+    </form>
+    <table><thead><tr><th>الطالب</th><th>الامتحان</th><th>الدرجة</th><th>التاريخ</th><th>ملف</th><th>حذف</th></tr></thead><tbody>`;
+  ex.forEach(e => { const s = st.find(x => x.id === e.studentId); const link = e.fileData ? `<a href="${e.fileData}" download="${e.fileName||'exam'}">📥</a>` : '—'; h += `<tr><td>${s ? s.name : '—'}</td><td>${e.examName}</td><td>${e.score}</td><td>${e.date}</td><td>${link}</td><td><button class="btn btn-del" onclick="deleteExam('${e.id}')">🗑️</button></td></tr>`; });
+  if (!ex.length) h += '<tr><td colspan="6">لا توجد امتحانات</td></tr>';
+  h += '</tbody></table></div></div>';
+  m.innerHTML = h;
+  document.getElementById('ef').onsubmit = async function(e) {
+    e.preventDefault();
+    const studentId = document.getElementById('es').value;
+    const examName = document.getElementById('en').value.trim();
+    const score = parseInt(document.getElementById('esc').value);
+    const date = document.getElementById('ed').value;
+    const fileInput = document.getElementById('efile');
+    if (!studentId || !examName || isNaN(score) || !date) return alert('البيانات ناقصة');
+    let fileData = null, fileName = null;
+    if (fileInput.files[0]) { fileData = await fileToBase64(fileInput.files[0]); fileName = fileInput.files[0].name; }
+    saveExams([...exams(), { id: gid(), studentId, examName, score, date, fileData, fileName }]);
+    showToast('✅ تم التسجيل');
+    loadExams();
+  };
+}
+function deleteExam(id) { if (!confirm('حذف؟')) return; saveExams(exams().filter(e => e.id !== id)); loadExams(); }
+// ==================== STORE PAGE ====================
+const STAGES = ['J4', 'J5', 'J6', 'M1', 'M2', 'M3', 'S1', 'S2', 'S3'];
+const STAGE_ICONS = { 'J4': '🎒', 'J5': '📚', 'J6': '✏️', 'M1': '🔬', 'M2': '📐', 'M3': '🧮', 'S1': '📖', 'S2': '📝', 'S3': '🎓' };
+const STAGE_COLORS = { 'J4': '#3b82f6', 'J5': '#10b981', 'J6': '#f59e0b', 'M1': '#ef4444', 'M2': '#8b5cf6', 'M3': '#ec4899', 'S1': '#6366f1', 'S2': '#14b8a6', 'S3': '#f97316' };
+
+function openFilePicker(stage) {
+  const input = document.getElementById('store-input-' + stage);
+  if (input) { input.value = ''; input.click(); }
+}
+
+window.processStoreUpload = async function(stage) {
+  const input = document.getElementById('store-input-' + stage);
+  if (!input || !input.files || !input.files.length) return;
+  showToast('⏳ جاري الرفع...');
+  const currentFiles = await getStoreFiles();
+  let uploadedCount = 0;
+  for (let i = 0; i < input.files.length; i++) {
+    const file = input.files[i];
+    try {
+      const base64 = await fileToBase64(file);
+      const ext = file.name.split('.').pop().toLowerCase();
+      let type = 'image';
+      if (ext === 'pdf') type = 'pdf';
+      else if (['doc', 'docx'].includes(ext)) type = 'doc';
+      else if (['ppt', 'pptx'].includes(ext)) type = 'ppt';
+      currentFiles.push({ id: gid(), name: file.name, type, stage, date: new Date().toISOString().slice(0, 10), data: base64 });
+      uploadedCount++;
+    } catch (err) { alert('فشل: ' + file.name); }
+  }
+  if (uploadedCount > 0) { await saveStoreFiles(currentFiles); showToast('✅ تم رفع ' + uploadedCount + ' ملفات في ' + stage); }
+  input.value = '';
+  loadStore();
+};
+
+async function loadStore() {
+  const m = document.getElementById('main-content');
+  const files = await getStoreFiles();
+  let h = `<div class="page"><h2>🗄️ المخزن</h2><div class="store-grid">`;
+  STAGES.forEach(stage => {
+    const stageFiles = files.filter(f => f.stage === stage);
+    const color = STAGE_COLORS[stage];
+    h += `<div class="store-stage-card" style="border-top:5px solid ${color};">
+      <div class="stage-header">${STAGE_ICONS[stage]} ${stage} <span>${stageFiles.length}</span></div>
+      <div class="stage-files">`;
+    if (!stageFiles.length) h += '<div style="text-align:center;color:#94a3b8;padding:10px;">فارغ</div>';
+    else stageFiles.forEach(f => {
+      const icon = f.type === 'pdf' ? '📄' : f.type === 'doc' ? '📝' : f.type === 'ppt' ? '📊' : '🖼️';
+      h += `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px;background:var(--bg);border-radius:6px;margin-bottom:4px;">
+        <span>${icon} ${f.name}</span>
+        <div>
+          <button class="btn btn-rename" onclick="renameFile('${f.id}')">✏️</button>
+          <a href="${f.data}" download="${f.name}" class="btn btn-download">📥</a>
+          <button class="btn btn-del" onclick="deleteStoreFile('${f.id}')">🗑️</button>
+        </div>
+      </div>`;
+    });
+    h += `</div>
+      <input type="file" id="store-input-${stage}" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.gif" multiple style="display:none;" onchange="processStoreUpload('${stage}')">
+      <button class="upload-btn" onclick="openFilePicker('${stage}')">⬆️ رفع</button>
+    </div>`;
   });
-  h += `</tbody></table></div>`;
+  h += '</div></div>';
+  m.innerHTML = h;
+}
 
-  h += `<div class="ai-card animate-fadeInUp">
-    <h3>💡 اقتراحات ذكية</h3>`;
-  if (weak.length > 0) h += `<div class="ai-suggestion">📞 التواصل مع أولياء أمور الطلاب الضعاف (${weak.length} طالب)</div>`;
-  if (decliningStudents.length > 0) h += `<div class="ai-suggestion">📚 عمل مراجعات إضافية للطلاب المنخفضين (${decliningStudents.length} طالب)</div>`;
-  if (excellent.length > 0) h += `<div class="ai-suggestion">🌟 تشجيع الطلاب الممتازين بمكافآت (${excellent.length} طالب)</div>`;
-  if (lowWorkScore.length > 0) h += `<div class="ai-suggestion">⚠️ متابعة طلاب أعمال السنة المنخفضة (${lowWorkScore.length} طالب)</div>`;
-  h += `<div class="ai-suggestion">📊 عمل اختبارات دورية لقياس التقدم</div>`;
-  h += `<div class="ai-suggestion">🎯 وضع أهداف أسبوعية لكل فصل</div>`;
-  h += `</div>`;
+async function renameFile(id) {
+  const files = await getStoreFiles();
+  const file = files.find(f => f.id === id);
+  if (!file) return;
+  const newName = prompt('الاسم الجديد:', file.name);
+  if (!newName) return;
+  files[files.findIndex(f => f.id === id)].name = newName.trim();
+  await saveStoreFiles(files);
+  showToast('✅ تم التغيير');
+  loadStore();
+}
 
+async function deleteStoreFile(id) {
+  if (!confirm('حذف؟')) return;
+  const files = await getStoreFiles();
+  await saveStoreFiles(files.filter(f => f.id !== id));
+  loadStore();
+}
+
+// ==================== QUESTION BANK ====================
+function loadQuestionbank() {
+  const m = document.getElementById('main-content');
+  const qb = questionBank();
+  let h = `<div class="page"><h2>📚 بنك الأسئلة</h2>
+    <form id="qbf">
+      <select id="qb-stage"><option value="">المرحلة</option>${STAGES.map(s=>`<option value="${s}">${s}</option>`).join('')}</select>
+      <input type="text" id="qb-lesson" placeholder="الدرس">
+      <input type="text" id="qb-question" placeholder="السؤال" required>
+      <button type="submit">➕ إضافة</button>
+    </form>
+    <table><thead><tr><th>المرحلة</th><th>الدرس</th><th>السؤال</th><th>حذف</th></tr></thead><tbody>`;
+  qb.forEach(q => h += `<tr><td>${q.stage||'—'}</td><td>${q.lesson||'—'}</td><td style="text-align:right;">${q.question}</td><td><button class="btn btn-del" onclick="deleteQuestion('${q.id}')">🗑️</button></td></tr>`);
+  if (!qb.length) h += '<tr><td colspan="4">لا توجد أسئلة</td></tr>';
+  h += '</tbody></table></div>';
+  m.innerHTML = h;
+  document.getElementById('qbf').onsubmit = function(e) {
+    e.preventDefault();
+    const stage = document.getElementById('qb-stage').value;
+    const lesson = document.getElementById('qb-lesson').value.trim();
+    const question = document.getElementById('qb-question').value.trim();
+    if (!question) return;
+    saveQuestionBank([...questionBank(), { id: gid(), stage, lesson, question }]);
+    showToast('✅ تمت الإضافة');
+    loadQuestionbank();
+  };
+}
+function deleteQuestion(id) { if (!confirm('حذف؟')) return; saveQuestionBank(questionBank().filter(q => q.id !== id)); loadQuestionbank(); }
+
+// ==================== HOMEWORK ====================
+function loadHomework() {
+  const m = document.getElementById('main-content');
+  const hw = homework();
+  const gr = groups();
+  let h = `<div class="page"><h2>📖 الواجبات</h2>
+    <form id="hwf">
+      <select id="hw-group"><option value="">المجموعة</option>${gr.map(g=>`<option value="${g.id}">${g.name}</option>`).join('')}</select>
+      <input type="text" id="hw-desc" placeholder="الواجب" required>
+      <input type="date" id="hw-due" required>
+      <button type="submit">➕ إضافة</button>
+    </form>
+    <table><thead><tr><th>المجموعة</th><th>الواجب</th><th>التسليم</th><th>الحالة</th><th>حذف</th></tr></thead><tbody>`;
+  hw.forEach(hwItem => {
+    const g = gr.find(x => x.id === hwItem.groupId);
+    const status = hwItem.status === 'done' ? '✅ تم' : '⏳ متبقي';
+    h += `<tr><td>${g?g.name:'—'}</td><td>${hwItem.description}</td><td>${hwItem.dueDate}</td><td><button class="btn ${hwItem.status === 'done' ? 'btn-save' : 'btn-edit'}" onclick="toggleHomework('${hwItem.id}')">${status}</button></td><td><button class="btn btn-del" onclick="deleteHomework('${hwItem.id}')">🗑️</button></td></tr>`;
+  });
+  if (!hw.length) h += '<tr><td colspan="5">لا توجد واجبات</td></tr>';
+  h += '</tbody></table></div>';
+  m.innerHTML = h;
+  document.getElementById('hwf').onsubmit = function(e) {
+    e.preventDefault();
+    const groupId = document.getElementById('hw-group').value;
+    const description = document.getElementById('hw-desc').value.trim();
+    const dueDate = document.getElementById('hw-due').value;
+    if (!description || !dueDate) return;
+    saveHomework([...homework(), { id: gid(), groupId, description, dueDate, status: 'pending' }]);
+    showToast('✅ تمت الإضافة');
+    loadHomework();
+  };
+}
+function toggleHomework(id) { const hw = homework(); const idx = hw.findIndex(h => h.id === id); if (idx > -1) { hw[idx].status = hw[idx].status === 'done' ? 'pending' : 'done'; saveHomework(hw); loadHomework(); } }
+function deleteHomework(id) { if (!confirm('حذف؟')) return; saveHomework(homework().filter(h => h.id !== id)); loadHomework(); }
+
+// ==================== TASKS ====================
+function loadTasks() {
+  const m = document.getElementById('main-content');
+  const taskList = tasks();
+  let h = `<div class="page"><h2>✅ المهام</h2>
+    <form id="tf">
+      <input type="text" id="task-desc" placeholder="المهمة" required>
+      <button type="submit">➕ إضافة</button>
+    </form>
+    <table><thead><tr><th>المهمة</th><th>الحالة</th><th>حذف</th></tr></thead><tbody>`;
+  taskList.forEach(t => h += `<tr><td>${t.description}</td><td><button class="btn ${t.done ? 'btn-save' : 'btn-edit'}" onclick="toggleTask('${t.id}')">${t.done ? '✅ تم' : '⏳ متبقي'}</button></td><td><button class="btn btn-del" onclick="deleteTask('${t.id}')">🗑️</button></td></tr>`);
+  if (!taskList.length) h += '<tr><td colspan="3">لا توجد مهام</td></tr>';
+  h += '</tbody></table></div>';
+  m.innerHTML = h;
+  document.getElementById('tf').onsubmit = function(e) {
+    e.preventDefault();
+    const desc = document.getElementById('task-desc').value.trim();
+    if (!desc) return;
+    saveTasks([...tasks(), { id: gid(), description: desc, done: false }]);
+    showToast('✅ تمت الإضافة');
+    loadTasks();
+  };
+}
+function toggleTask(id) { const taskList = tasks(); const idx = taskList.findIndex(t => t.id === id); if (idx > -1) { taskList[idx].done = !taskList[idx].done; saveTasks(taskList); loadTasks(); } }
+function deleteTask(id) { if (!confirm('حذف؟')) return; saveTasks(tasks().filter(t => t.id !== id)); loadTasks(); }
+
+// ==================== HALL OF FAME ====================
+function loadHalloffame() {
+  const m = document.getElementById('main-content');
+  const st = students();
+  const att = attendance();
+  const ex = exams();
+
+  const ranked = st.map(s => {
+    const studentAtt = att.filter(x => x.studentId === s.id);
+    const presentCount = studentAtt.filter(x => x.status === 'present').length;
+    const attPct = studentAtt.length ? Math.round((presentCount / studentAtt.length) * 100) : 0;
+    const studentExams = ex.filter(x => x.studentId === s.id);
+    const avgScore = studentExams.length
+      ? (studentExams.reduce((sum, e) => sum + e.score, 0) / studentExams.length).toFixed(1)
+      : 0;
+    return { ...s, attendancePct: attPct, avgScore: parseFloat(avgScore) || 0 };
+  });
+
+  const byAttendance = [...ranked].sort((a, b) => b.attendancePct - a.attendancePct).slice(0, 5);
+  const byScore = [...ranked].sort((a, b) => b.avgScore - a.avgScore).slice(0, 5);
+  const byPoints = [...st].sort((a, b) => (b.points || 0) - (a.points || 0)).slice(0, 5);
+
+  let h = `<div class="page"><h2>🏆 لوحة الشرف</h2>`;
+  h += `<h3>📋 أفضل حضور</h3><div class="hall-grid">`;
+  byAttendance.forEach((s, i) => h += `<div class="hall-card"><div class="rank rank-${i+1}">#${i+1}</div><div class="name">${s.name}</div><div class="stat">📊 ${s.attendancePct}%</div></div>`);
+  h += `</div><h3 style="margin-top:18px;">📝 أفضل الدرجات</h3><div class="hall-grid">`;
+  byScore.forEach((s, i) => h += `<div class="hall-card"><div class="rank rank-${i+1}">#${i+1}</div><div class="name">${s.name}</div><div class="stat">📝 ${s.avgScore}</div></div>`);
+  h += `</div><h3 style="margin-top:18px;">⭐ أكثر نقاط</h3><div class="hall-grid">`;
+  byPoints.forEach((s, i) => h += `<div class="hall-card"><div class="rank rank-${i+1}">#${i+1}</div><div class="name">${s.name}</div><div class="stat">⭐ ${s.points||0}</div></div>`);
   h += `</div></div>`;
   m.innerHTML = h;
 }
 
-// ==================== REPORTS PAGE ====================
-function loadReports() {
+// ==================== AI REPORT ====================
+function loadAireport() {
   const m = document.getElementById('main-content');
-  const cls = classes();
-  const allStudents = [];
-  
-  cls.forEach(c => {
-    (c.students || []).forEach(s => {
-      const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
-      allStudents.push({
-        ...s,
-        className: c.name,
-        total,
-        pct: Math.round((total / 100) * 100)
-      });
-    });
+  const st = students();
+  const att = attendance();
+  const pay = payments();
+  const ex = exams();
+
+  const studentData = st.map(s => {
+    const studentAtt = att.filter(a => a.studentId === s.id);
+    const presentCount = studentAtt.filter(a => a.status === 'present').length;
+    const attPct = studentAtt.length ? Math.round((presentCount / studentAtt.length) * 100) : 0;
+    const totalPaid = pay.filter(p => p.studentId === s.id).reduce((sum, p) => sum + p.amount, 0);
+    const studentExams = ex.filter(e => e.studentId === s.id);
+    const avgScore = studentExams.length
+      ? (studentExams.reduce((sum, e) => sum + e.score, 0) / studentExams.length).toFixed(1)
+      : 0;
+    return { ...s, attendancePct: attPct, totalPaid, avgScore: parseFloat(avgScore) || 0, examCount: studentExams.length };
   });
 
-  let h = `<div class="page"><h2>📊 التقارير</h2>
-    <div class="act-bar">
-      <button class="btn btn-excel" onclick="exportFullExcel()">📥 Excel شامل</button>
-      <button class="btn btn-pdf" onclick="shareAsPDF('reports-content', 'التقرير_الشامل')">📄 PDF</button>
-      <button class="btn btn-img" onclick="shareAsImage('reports-content', 'التقرير_الشامل')">📸 صورة</button>
-      <button class="btn btn-print" onclick="printFullReport()">🖨️ طباعة</button>
-      <button class="btn btn-word" onclick="exportFullWord()">📝 Word</button>
-    </div>
-    <div id="reports-content">`;
+  const lowAttendance = studentData.filter(s => s.attendancePct < 70);
+  const lowScores = studentData.filter(s => s.avgScore < 50 && s.examCount > 0);
+  const unpaidStudents = studentData.filter(s => s.totalPaid === 0);
+  const excellentStudents = studentData.filter(s => s.avgScore >= 85 && s.attendancePct >= 85);
 
-  h += `<div class="chart-wrap"><h3>📊 توزيع الدرجات</h3><canvas id="gradesChart" height="80"></canvas></div>`;
-  setTimeout(() => {
-    const ctx = document.getElementById('gradesChart');
-    if (ctx) {
-      const ranges = [
-        allStudents.filter(s => s.pct >= 85).length,
-        allStudents.filter(s => s.pct >= 70 && s.pct < 85).length,
-        allStudents.filter(s => s.pct >= 50 && s.pct < 70).length,
-        allStudents.filter(s => s.pct < 50).length
-      ];
-      new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: ['ممتاز (≥85%)', 'جيد (70-84%)', 'متوسط (50-69%)', 'ضعيف (<50%)'],
-          datasets: [{
-            data: ranges,
-            backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444']
-          }]
-        },
-        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
-      });
-    }
-  }, 200);
+  let h = `<div class="page"><h2>🤖 تحليل AI - تاريخ</h2>
+    <div class="ai-card"><h3>📊 ملخص</h3>
+      <div class="ai-suggestion">👨‍🎓 إجمالي: <strong>${st.length}</strong> طالب</div>
+      <div class="ai-suggestion">⚠️ حضور منخفض: <strong>${lowAttendance.length}</strong></div>
+      <div class="ai-suggestion">📉 درجات منخفضة: <strong>${lowScores.length}</strong></div>
+      <div class="ai-suggestion">💰 لم يسددوا: <strong>${unpaidStudents.length}</strong></div>
+      <div class="ai-suggestion">🌟 ممتازين: <strong>${excellentStudents.length}</strong></div>
+    </div>`;
 
-  h += `<h3 style="margin-top:18px;">📋 كشف الدرجات الشامل</h3>
-    <table>
-      <thead><tr><th>#</th><th>الطالب</th><th>الفصل</th><th>أعمال (70)</th><th>شهر1 (15)</th><th>شهر2 (15)</th><th>المجموع</th><th>النسبة</th><th>التقدير</th></tr></thead>
-      <tbody>`;
-  
-  allStudents.sort((a, b) => b.total - a.total).forEach((s, i) => {
-    const grade = s.pct >= 85 ? 'ممتاز' : s.pct >= 70 ? 'جيد جداً' : s.pct >= 50 ? 'جيد' : 'ضعيف';
-    const scoreClass = s.pct >= 85 ? 'score-high' : s.pct >= 50 ? 'score-mid' : 'score-low';
-    h += `<tr>
-      <td>${i + 1}</td>
-      <td><strong>${s.name}</strong></td>
-      <td>${s.className}</td>
-      <td>${s.workScore}</td>
-      <td>${s.month1}</td>
-      <td>${s.month2}</td>
-      <td class="${scoreClass}">${s.total}</td>
-      <td class="${scoreClass}">${s.pct}%</td>
-      <td>${grade}</td>
-    </tr>`;
-  });
-  
-  if (!allStudents.length) h += '<tr><td colspan="9">لا يوجد طلاب</td></tr>';
-  h += `</tbody></table>`;
+  if (lowAttendance.length > 0) {
+    h += `<div class="ai-card"><h3>⚠️ طلاب حضورهم أقل من 70%</h3>`;
+    lowAttendance.forEach(s => h += `<div class="ai-suggestion">👨‍🎓 ${s.name} - ${s.attendancePct}%</div>`);
+    h += `</div>`;
+  }
 
-  h += `<h3 style="margin-top:18px;">🏫 ملخص الفصول</h3>
-    <table>
-      <thead><tr><th>الفصل</th><th>الطلاب</th><th>المتوسط</th><th>أعلى</th><th>أقل</th><th>نجاح%</th></tr></thead>
-      <tbody>`;
-  
-  cls.forEach(c => {
-    const students = c.students || [];
-    const totals = students.map(s => (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0));
-    const avg = totals.length ? Math.round(totals.reduce((a, b) => a + b, 0) / totals.length) : 0;
-    const max = totals.length ? Math.max(...totals) : 0;
-    const min = totals.length ? Math.min(...totals) : 0;
-    const passRate = totals.length ? Math.round((totals.filter(t => t >= 50).length / totals.length) * 100) : 0;
-    h += `<tr><td>${c.name}</td><td>${students.length}</td><td>${avg}%</td><td>${max}</td><td>${min}</td><td>${passRate}%</td></tr>`;
-  });
-  h += `</tbody></table></div></div>`;
+  if (lowScores.length > 0) {
+    h += `<div class="ai-card"><h3>📉 طلاب درجاتهم أقل من 50</h3>`;
+    lowScores.forEach(s => h += `<div class="ai-suggestion">👨‍🎓 ${s.name} - ${s.avgScore}</div>`);
+    h += `</div>`;
+  }
+
+  if (excellentStudents.length > 0) {
+    h += `<div class="ai-card"><h3>🌟 طلاب ممتازين - يستحقون مكافأة</h3>`;
+    excellentStudents.forEach(s => h += `<div class="ai-suggestion">👨‍🎓 ${s.name} - ${s.avgScore} 🏅</div>`);
+    h += `</div>`;
+  }
+
+  h += `<div class="ai-card"><h3>💡 اقتراحات ذكية</h3>`;
+  if (lowAttendance.length > 0) h += `<div class="ai-suggestion">📞 التواصل مع أولياء أمور الطلاب ذوي الحضور المنخفض</div>`;
+  if (lowScores.length > 0) h += `<div class="ai-suggestion">📚 مراجعات إضافية للطلاب ذوي الدرجات المنخفضة</div>`;
+  if (unpaidStudents.length > 0) h += `<div class="ai-suggestion">💰 إرسال تذكيرات دفع</div>`;
+  h += `<div class="ai-suggestion">📊 متابعة أسبوعية للتقدم</div>`;
+  h += `</div></div>`;
   m.innerHTML = h;
 }
 
-function exportFullExcel() {
-  const cls = classes();
-  const data = [['#', 'الطالب', 'الفصل', 'أعمال (70)', 'شهر1 (15)', 'شهر2 (15)', 'المجموع', 'النسبة', 'التقدير']];
-  let i = 1;
-  cls.forEach(c => {
-    (c.students || []).forEach(s => {
-      const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
-      const pct = Math.round((total / 100) * 100);
-      const grade = pct >= 85 ? 'ممتاز' : pct >= 70 ? 'جيد جداً' : pct >= 50 ? 'جيد' : 'ضعيف';
-      data.push([i++, s.name, c.name, s.workScore || 70, s.month1Score || 0, s.month2Score || 0, total, pct + '%', grade]);
-    });
+// ==================== REPORTS ====================
+function loadReports() {
+  const m = document.getElementById('main-content');
+  const st = students(), att = attendance(), pay = payments(), ex = exams(), gr = groups();
+
+  let h = `<div class="page"><h2>📊 التقارير</h2>
+    <div class="act-bar">
+      <button class="btn btn-excel" onclick="exportToExcel()">📥 Excel</button>
+      <button class="btn btn-pdf" onclick="shareAsPDF('reports-content', 'التقرير')">📄 PDF</button>
+      <button class="btn btn-img" onclick="shareAsImage('reports-content', 'التقرير')">📸 صورة</button>
+      <button class="btn btn-print" onclick="printReports()">🖨️ طباعة</button>
+    </div>
+    <div id="reports-content">`;
+
+  if (gr.length > 0) {
+    h += `<div class="chart-wrap"><canvas id="groupChart" height="80"></canvas></div>`;
+    setTimeout(() => {
+      const ctx = document.getElementById('groupChart');
+      if (ctx) new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: gr.map(g => g.name),
+          datasets: [{
+            label: 'الطلاب',
+            data: gr.map(g => st.filter(s => s.groupId === g.id).length),
+            backgroundColor: ['#8b5cf6', '#10b981', '#f59e0b', '#ef4444', '#3b82f6', '#ec4899']
+          }]
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } }
+      });
+    }, 200);
+  }
+
+  h += `<h3>📋 ملخص الطلاب</h3><table><thead><tr><th>الطالب</th><th>المجموعة</th><th>حضور%</th><th>مدفوعات</th><th>متوسط</th><th>نقاط</th></tr></thead><tbody>`;
+  st.forEach(s => {
+    const g = groupById(s.groupId);
+    const a = att.filter(x => x.studentId === s.id);
+    const pr = a.filter(x => x.status === 'present').length;
+    const pct = a.length ? Math.round((pr/a.length)*100) : 0;
+    const tot = pay.filter(x => x.studentId === s.id).reduce((sm,x) => sm + x.amount, 0);
+    const exm = ex.filter(x => x.studentId === s.id);
+    const avg = exm.length ? (exm.reduce((sm,x)=>sm+x.score,0)/exm.length).toFixed(1) : 0;
+    h += `<tr><td>${s.name}</td><td>${g?g.name:'—'}</td><td>${pct}%</td><td>${tot} ج.م</td><td>${avg}</td><td>⭐ ${s.points||0}</td></tr>`;
+  });
+  h += '</tbody></table></div></div>';
+  m.innerHTML = h;
+}
+
+function exportToExcel() {
+  const st = students(), att = attendance(), pay = payments(), ex = exams();
+  const data = [['الاسم', 'الهاتف', 'المجموعة', 'حضور%', 'مدفوعات', 'متوسط', 'نقاط']];
+  st.forEach(s => {
+    const g = groupById(s.groupId);
+    const a = att.filter(x => x.studentId === s.id);
+    const pr = a.filter(x => x.status === 'present').length;
+    const pct = a.length ? Math.round((pr/a.length)*100) : 0;
+    const tot = pay.filter(x => x.studentId === s.id).reduce((sm,x) => sm + x.amount, 0);
+    const exm = ex.filter(x => x.studentId === s.id);
+    const avg = exm.length ? (exm.reduce((sm,x)=>sm+x.score,0)/exm.length).toFixed(1) : 0;
+    data.push([s.name, s.phone, g?g.name:'—', pct+'%', tot, avg, s.points||0]);
   });
   const ws = XLSX.utils.aoa_to_sheet(data);
   const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'الدرجات');
-  XLSX.writeFile(wb, 'dr_mohamed_saeed_grades.xlsx');
+  XLSX.utils.book_append_sheet(wb, ws, 'الطلاب');
+  XLSX.writeFile(wb, 'dr_mohamed_saeed_students.xlsx');
   showToast('✅ تم تصدير Excel');
 }
 
-function exportFullWord() {
-  const cls = classes();
-  let html = '<h2>كشف درجات التاريخ - د. محمد سعيد</h2>';
-  cls.forEach(c => {
-    html += `<h3>${c.name}</h3><table><tr><th>#</th><th>الطالب</th><th>أعمال</th><th>شهر1</th><th>شهر2</th><th>المجموع</th><th>النسبة</th></tr>`;
-    (c.students || []).forEach((s, i) => {
-      const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
-      html += `<tr><td>${i + 1}</td><td>${s.name}</td><td>${s.workScore || 70}</td><td>${s.month1Score || 0}</td><td>${s.month2Score || 0}</td><td>${total}</td><td>${Math.round((total / 100) * 100)}%</td></tr>`;
-    });
-    html += '</table><br>';
+function printReports() {
+  const st = students(), att = attendance(), pay = payments(), ex = exams();
+  let html = '<h2>تقرير د. محمد سعيد - تاريخ</h2><table><tr><th>الطالب</th><th>حضور%</th><th>مدفوعات</th><th>متوسط</th><th>نقاط</th></tr>';
+  st.forEach(s => {
+    const a = att.filter(x => x.studentId === s.id);
+    const pr = a.filter(x => x.status === 'present').length;
+    const pct = a.length ? Math.round((pr/a.length)*100) : 0;
+    const tot = pay.filter(x => x.studentId === s.id).reduce((sm,x) => sm + x.amount, 0);
+    const exm = ex.filter(x => x.studentId === s.id);
+    const avg = exm.length ? (exm.reduce((sm,x)=>sm+x.score,0)/exm.length).toFixed(1) : 0;
+    html += `<tr><td>${s.name}</td><td>${pct}%</td><td>${tot} ج.م</td><td>${avg}</td><td>${s.points||0}</td></tr>`;
   });
-  const blob = new Blob([html], { type: 'application/msword' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'dr_mohamed_saeed_full_report.doc';
-  a.click();
-  showToast('✅ تم تصدير Word');
-}
-
-function printFullReport() {
-  const cls = classes();
-  let html = '<h2>كشف درجات التاريخ - د. محمد سعيد</h2>';
-  cls.forEach(c => {
-    html += `<h3>${c.name}</h3><table><tr><th>#</th><th>الطالب</th><th>أعمال</th><th>شهر1</th><th>شهر2</th><th>المجموع</th><th>النسبة</th></tr>`;
-    (c.students || []).forEach((s, i) => {
-      const total = (s.workScore || 70) + (s.month1Score || 0) + (s.month2Score || 0);
-      html += `<tr><td>${i + 1}</td><td>${s.name}</td><td>${s.workScore || 70}</td><td>${s.month1Score || 0}</td><td>${s.month2Score || 0}</td><td>${total}</td><td>${Math.round((total / 100) * 100)}%</td></tr>`;
-    });
-    html += '</table><br>';
-  });
+  html += '</table>';
   const win = window.open('', '_blank');
-  win.document.write('<html><head><style>body{font-family:Tahoma;direction:rtl;padding:20px;}table{width:100%;border-collapse:collapse;}td,th{border:1px solid #ddd;padding:8px;text-align:center;}h3{color:#7c3aed;}</style></head><body>' + html + '</body></html>');
+  win.document.write('<html><head><style>body{font-family:Tahoma;direction:rtl;padding:20px;}table{width:100%;border-collapse:collapse;}td,th{border:1px solid #ddd;padding:8px;text-align:center;}</style></head><body>' + html + '</body></html>');
   win.print();
 }
 </script>
